@@ -1,11 +1,11 @@
 package com.project.ServiceBooking.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,5 +21,8 @@ public class Seller {
 
     @Column(name = "Education", length = 1000)
     private String education;
+
+    @OneToMany(mappedBy = "sellerIdSeller")
+    private Set<User> users = new LinkedHashSet<>();
 
 }

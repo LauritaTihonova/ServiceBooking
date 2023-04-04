@@ -1,9 +1,6 @@
 package com.project.ServiceBooking.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,5 +20,13 @@ public class Booking {
 
     @Column(name = "Date")
     private Instant date;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_users")
+    private User idUsers;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_services")
+    private Service idServices;
 
 }
