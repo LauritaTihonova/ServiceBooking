@@ -31,6 +31,11 @@ public class TestController {
             return "Client_Profile_Private.html";
         }
 
+        @GetMapping("/clientPrivate/edit")
+        public String clientPrivateEdit(){
+            return "Client_Profile_Edit.html";
+        }
+
 
 }
 

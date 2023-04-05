@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Profile</title>
+    <title>Edit profile</title>
     <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
@@ -203,82 +203,103 @@
 </head>
 <body>
 <div class="container">
-  <div class="row">
-    <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
-      <div class="profile-container">
-        <div class="profile">
-          <div class="profile-image">
-            <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
-          </div>
-          <div>
-            <div class="profile-name">
-              John Doe
-            </div>
+    <div class="row">
+        <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
+            <div class="profile-container">
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
+                    </div>
+                    <div>
+                        <div class="profile-name">
+                            John Doe
+                        </div>
 
-          </div>
-          <div class="profile-buttons">
-            <div class="profile-cta">
-              <button type="button"><a href="clientPrivate/edit">Edit</a></button>
+                    </div>
+                    <div class="profile-buttons">
+                        <div class="profile-cta">
+                            <button>Save changes</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="p-4">Account info:</p>
+                    <div class="border p-3">
+                        <div class="">
+                            <p>Balance: 123456 EUR</p>
+                        </div>
+                        <div class="">
+                            <p>Card added: **** **** **** **12</p>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="col-md-3 mb-3">
+                                <label>Card number</label>
+                                <input type="text" class="form-control" placeholder="**** **** **** **12">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>Expiration</label>
+                                <input type="text" class="form-control" placeholder="mm/yy">
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label>CVV</label>
+                                <input type="text" class="form-control" placeholder="123">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="profile">
+                    <div class="left-section">
+                        <div class="profile-languages">
+
+                            <p>Languages</p>
+
+                            <ul class="list-group" id="language list">
+                                <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>
+                                <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>
+                                <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>
+                            </ul>
+
+
+                        </div>
+                        <div class="profile-services">
+
+                            <p>Services</p>
+                            <div class="services-count">15</div>
+                            <div class="services-text">completed projects</div>
+
+
+                        </div>
+                    </div>
+                    <div class="vertical-line"></div>
+                    <div class="right-section">
+
+                        <p>Description</p>
+                        <div class="profile-description border" contentEditable="true">
+                            👋 Hi, there, Welcome to my profile!<br><br>
+                            🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>
+
+                            I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>
+
+                            If you are:
+                            <br>
+                            ⭐ A developer with some experience.<br>
+                            ⭐ Ready to work on this project full time.<br>
+                            ⭐ Someone who likes to work remotely.<br>
+                            ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
+
+                            Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>
+
+                            Regards,<br>
+                            Jogn Doe looking for someone smart.
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-
-        <div class="money text-left">
-          <p class="p-4">Account info:</p>
-          <div class="title border">
-            <div>
-              <p>Balance: 123456 EUR</p>
-            </div>
-            <div>
-              <p>Card added: **** **** **** **12</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="profile">
-          <div class="left-section">
-            <div class="profile-languages">
-              <p>Languages</p>
-              <ul>
-                <li class="skills">Lithuanian</li>
-                <li class="skills">English</li>
-                <li class="skills">Spanish</li>
-              </ul>
-            </div>
-            <div class="profile-services">
-              <p>Services</p>
-              <div class="services-count">8</div>
-              <div class="services-text">services bought</div>
-
-
-            </div>
-          </div>
-          <div class="vertical-line"></div>
-          <div class="right-section">
-            <p>Description</p>
-            <div class="profile-description">
-              👋 Hi, there, Welcome to my profile!<br><br>
-              🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>
-
-              I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>
-
-              If you are:
-              <br>
-              ⭐ A developer with some experience.<br>
-              ⭐ Ready to work on this project full time.<br>
-              ⭐ Someone who likes to work remotely.<br>
-              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
-
-              Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>
-
-              Regards,<br>
-              Jogn Doe looking for someone smart.
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 </body>
 </html>
