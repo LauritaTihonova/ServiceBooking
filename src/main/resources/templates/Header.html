@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Service Booking!</title>
 
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
@@ -12,7 +12,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
 
 <style>
-      .profile-cta button {
+       a {
+        color: white;
+        }
+
+        .header {
+        float: right;
         padding: 10px 20px;
         font-size: 20px;
         color: white;
@@ -20,49 +25,26 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s ease-in-out;
-                }
-            .profile-buttons{
-        margin-left: auto;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-        float: top;
-        }
+        margin: 15px 10px 0px 10px;
+        transition: background-color 0.3s ease-in-out;}
 
 </style>
+    <nav>
+        <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
+        <button class="header"><a href="/home">Home</a></button>
+        <button class="header"><a href="about.html">Our Services</a></button>
+        <button class="header"><a href="services.html">About Us</a></button>
+        <button class="header"><a href="contact.html">Contact Us</a></button>
+        <button class="header"><a href="/profile">My profile</a></button>
+  <!--      <button><a href="register.html">Register</a></button>
+        <form action="" style="float:right">
+            <input type="text" placeholder="Try to type something..." name="q">
+            <button type="submit">Search</button>
+        </form>-->
+    </nav>
 </head>
 
 <body>
-<div class="navbar-header" style="">
 
-        <div class="profile-buttons">
-            <div class="logo-image">
-                <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
-            </div>
-
-            <div class="profile-cta">
-                <button>Home</button>
-            </div>
-            <div class="profile-cta">
-                <button>Services</button>
-            </div>
-            <div class="profile-cta">
-                <button>About Us</button>
-            </div>
-            <div class="profile-cta">
-                <button><a href="profile">My Profile</a></button>
-            </div>
-            <div class="profile-cta">
-                <button>Register</button>
-            </div>
-            <div class="searchbar">
-                <form action="" class="search-bar">
-                    <input type="text" placeholder="Try to type something..." name="q">
-                    <button type="submit">Search</button>
-                </form>
-            </div>
-        </div>
-    </div>
 </body>
 </html>

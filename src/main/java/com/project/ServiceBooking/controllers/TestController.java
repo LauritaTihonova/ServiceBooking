@@ -20,5 +20,11 @@ public class TestController {
         return "User_Profile.html";
     }
 
+    @RequestMapping(path = "/payment")
+    public String payment() {
+        return "Payment.html";
+    }
+
+
 }
 
