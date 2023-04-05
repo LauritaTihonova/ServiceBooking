@@ -10,6 +10,10 @@ public class TestController {
     public String homepage() {
         return "HomePage.html";
     }
+    @RequestMapping(path = "/header")
+    public String header() {
+        return "Header.html";
+    }
 
     @RequestMapping(path = "/profile")
     public String userProfile() {
