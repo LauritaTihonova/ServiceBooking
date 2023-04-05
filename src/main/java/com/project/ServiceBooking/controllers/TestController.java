@@ -48,6 +48,13 @@ public class TestController {
         return "Payment.html";
     }
 
+    @RequestMapping(path = "/registration")
+    public String register() {
+        return "Registration_Two_Options.html";
+    }
+
+
+
 
 }
 
