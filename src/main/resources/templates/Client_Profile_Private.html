@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+    <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .profile-container,
+      .skills {
+        border: 1px solid #955aed;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        background-color: white;
+      }
+
+      .skills:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-container {
+        margin: 0px -37%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .profile-image {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .profile-image img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .profile-name {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #333;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      .profile-description {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #666;
+        text-align: left;
+      }
+
+      .profile-languages ul,
+      .profile-services ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-languages li,
+      .profile-services li {
+        margin-right: 10px;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .profile-languages li i,
+      .profile-services li i {
+        margin-right: 5px;
+        color: #955aed;
+      }
+
+      .profile-ratings,
+      .profile-services,
+      .profile-cta {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      p {
+        font-size: 20px;
+        color: #333;
+        font-weight: bold;
+        padding: 15px;
+        text-align: center;
+      }
+
+      .profile-ratings .rating-stars,
+      .profile-services .services-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profile-ratings .star,
+      .profile-services .services-text {
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        background-image: url(star.png);
+        background-size: cover;
+        margin-right: 5px;
+      }
+
+      .profile-services .services-count {
+        font-size: 24px;
+        margin-bottom: 5px;
+        color: #955aed;
+      }
+
+      .profile-services .services-text {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 10px;
+        width: auto;
+      }
+
+      .profile-cta button {
+        padding: 10px 20px;
+        font-size: 20px;
+        color: white;
+        background-color: #955aed;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .profile-cta button:hover {
+        background-color: #803eeb;
+      }
+
+      .profile {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        padding: 25px;
+        align-items: flex-start;
+      }
+
+      .profile img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+      }
+
+      .profile .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .profile .info h2 {
+        margin: 0;
+        font-size: 1.2rem;
+      }
+
+      .profile .info .ratings {
+        margin: 0;
+        font-size: 1rem;
+        color: #888;
+      }
+      .fa, .fas {
+        color: gold;
+      }
+      p {
+        margin-bottom: 0rem !important;
+      }
+      .profile-buttons{
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .left-section{
+        width: 30%;
+      }
+
+      .right-section{
+        width: 70%;
+      }
+      .vertical-line {
+        border-left: 1px solid #955aed;
+        height: 760px;
+      }
+
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
+      <div class="profile-container">
+        <div class="profile">
+          <div class="profile-image">
+            <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
+          </div>
+          <div>
+            <div class="profile-name">
+              John Doe
+            </div>
+
+          </div>
+          <div class="profile-buttons">
+            <div class="profile-cta">
+              <button type="button"><a href="clientPrivate/edit">Edit</a></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="money text-left">
+          <p class="p-4">Account info:</p>
+          <div class="title border">
+            <div>
+              <p>Balance: 123456 EUR</p>
+            </div>
+            <div>
+              <p>Card added: **** **** **** **12</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile">
+          <div class="left-section">
+            <div class="profile-languages">
+              <p>Languages</p>
+              <ul>
+                <li class="skills">Lithuanian</li>
+                <li class="skills">English</li>
+                <li class="skills">Spanish</li>
+              </ul>
+            </div>
+            <div class="profile-services">
+              <p>Services</p>
+              <div class="services-count">8</div>
+              <div class="services-text">services bought</div>
+
+
+            </div>
+          </div>
+          <div class="vertical-line"></div>
+          <div class="right-section">
+            <p>Description</p>
+            <div class="profile-description">
+              👋 Hi, there, Welcome to my profile!<br><br>
+              🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>
+
+              I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>
+
+              If you are:
+              <br>
+              ⭐ A developer with some experience.<br>
+              ⭐ Ready to work on this project full time.<br>
+              ⭐ Someone who likes to work remotely.<br>
+              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
+
+              Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>
+
+              Regards,<br>
+              Jogn Doe looking for someone smart.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
