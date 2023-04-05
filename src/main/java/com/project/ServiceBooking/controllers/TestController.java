@@ -11,5 +11,10 @@ public class TestController {
         return "HomePage.html";
     }
 
+    @RequestMapping(path = "/profile")
+    public String userProfile() {
+        return "User_Profile.html";
+    }
+
 }
 
