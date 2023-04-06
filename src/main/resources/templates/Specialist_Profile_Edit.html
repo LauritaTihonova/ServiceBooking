@@ -271,7 +271,10 @@
                         <div class="row justify-content-center">
                             <div class="col-md-3 mb-3">
                                 <label>Card number</label>
-                                <input type="text" class="form-control" placeholder="**** **** **** **12">
+                                <form action="#" method="post" th:action="@{/private/edit}" th:object="${userEdit}">
+                                    <input type="text" class="form-control" placeholder="**** **** **** **12" th:field="*{userEdit.accountIdaccount.cardNumber}">
+                                </form>
+
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label>Expiration</label>

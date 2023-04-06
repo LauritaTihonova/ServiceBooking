@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -39,8 +41,8 @@ public class MainController {
         model.addAttribute("userProfile", user);
         return "Specialist_Profile_Private.html";
     }
-    @GetMapping("/private/edit")
-    public String specialistPrivateEdit(Model model){
+    @PostMapping("/private/edit")
+    public String specialistPrivateEdit(@ModelAttribute User userEdit, Model model){
         User user = clientProfilePrivateService.getUser();
         model.addAttribute("userProfile", user);
         return "Specialist_Profile_Edit.html";
