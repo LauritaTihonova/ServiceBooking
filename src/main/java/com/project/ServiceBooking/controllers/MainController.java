@@ -1,6 +1,7 @@
 package com.project.ServiceBooking.controllers;
 
 import com.project.ServiceBooking.data.Account;
+import com.project.ServiceBooking.data.Role;
 import com.project.ServiceBooking.data.User;
 import com.project.ServiceBooking.services.Client_Profile_Private_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,28 +40,38 @@ public class MainController {
     public String specialistPrivateProfile(Model model){
         User user = clientProfilePrivateService.getUser();
         model.addAttribute("userProfile", user);
-        return "Specialist_Profile_Private.html";
+        if(user.getRole() == Role.CLIENT){
+            return "Client_Profile_Private.html";
+        }
+        else{
+            return "Specialist_Profile_Private.html";
+        }
     }
-    @PostMapping("/private/edit")
-    public String specialistPrivateEdit(@ModelAttribute User userEdit, Model model){
+    @GetMapping("/private/edit")
+    public String specialistPrivateEdit(Model model){
         User user = clientProfilePrivateService.getUser();
         model.addAttribute("userProfile", user);
-        return "Specialist_Profile_Edit.html";
+        if(user.getRole() == Role.CLIENT){
+            return "Client_Profile_Edit.html";
+        }
+        else{
+            return "Specialist_Profile_Edit.html";
+        }
     }
 
-    @GetMapping("/clientPrivate")
-    public String clientPrivateProfile(Model model){
-        User user = clientProfilePrivateService.getUser();
-        model.addAttribute("userProfile", user);
-        return "Client_Profile_Private.html";
-    }
+//    @GetMapping("/clientPrivate")
+//    public String clientPrivateProfile(Model model){
+//        User user = clientProfilePrivateService.getUser();
+//        model.addAttribute("userProfile", user);
+//        return "Client_Profile_Private.html";
+//    }
 
-    @GetMapping("/clientPrivate/edit")
-    public String clientPrivateEdit(Model model){
-        User user = clientProfilePrivateService.getUser();
-        model.addAttribute("userProfile", user);
-        return "Client_Profile_Edit.html";
-    }
+//    @GetMapping("/clientPrivate/edit")
+//    public String clientPrivateEdit(Model model){
+//        User user = clientProfilePrivateService.getUser();
+//        model.addAttribute("userProfile", user);
+//        return "Client_Profile_Edit.html";
+//    }
 
 
     @RequestMapping(path = "/payment")
