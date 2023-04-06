@@ -1,8 +1,17 @@
 package com.project.ServiceBooking.controllers;
 
+import com.project.ServiceBooking.data.Account;
+import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.services.Client_Profile_Private_Service;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -22,25 +31,36 @@ public class MainController {
         return "User_Profile.html";
     }
 
+
+    @Autowired
+    Client_Profile_Private_Service clientProfilePrivateService;
+
     @GetMapping("/private")
-    public String specialistPrivateProfile(){
+    public String specialistPrivateProfile(Model model){
+        User user = clientProfilePrivateService.getUser();
+        model.addAttribute("userProfile", user);
         return "Specialist_Profile_Private.html";
     }
-    @GetMapping("/private/edit")
-    public String specialistPrivateEdit(){
+    @PostMapping("/private/edit")
+    public String specialistPrivateEdit(@ModelAttribute User userEdit, Model model){
+        User user = clientProfilePrivateService.getUser();
+        model.addAttribute("userProfile", user);
         return "Specialist_Profile_Edit.html";
     }
 
     @GetMapping("/clientPrivate")
-    public String clientPrivateProfile(){
+    public String clientPrivateProfile(Model model){
+        User user = clientProfilePrivateService.getUser();
+        model.addAttribute("userProfile", user);
         return "Client_Profile_Private.html";
     }
 
     @GetMapping("/clientPrivate/edit")
-    public String clientPrivateEdit(){
+    public String clientPrivateEdit(Model model){
+        User user = clientProfilePrivateService.getUser();
+        model.addAttribute("userProfile", user);
         return "Client_Profile_Edit.html";
     }
-
 
 
     @RequestMapping(path = "/payment")

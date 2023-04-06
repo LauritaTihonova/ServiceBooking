@@ -13,6 +13,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue
     @Column(name = "id_users", nullable = false)
     private Integer id;
 
@@ -35,7 +36,7 @@ public class User {
     private String picture;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "account_idaccount", nullable = false)
+    @JoinColumn(name = "id_account", nullable = false)
     private Account accountIdaccount;
 
     @Column(name = "Language", length = 45)
@@ -49,7 +50,7 @@ public class User {
     private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "seller_id_seller")
+    @JoinColumn(name = "id_seller")
     private Seller sellerIdSeller;
 
     @OneToMany(mappedBy = "idUsers")

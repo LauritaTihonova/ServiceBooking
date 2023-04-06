@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
@@ -240,7 +240,9 @@
           </div>
           <div>
             <div class="profile-name">
-              John Doe
+<!--              Name Surname-->
+                <td th:text="${userProfile.getName()} + ' ' + ${userProfile.getSurname()}"></td>
+
             </div>
 
           </div>
@@ -255,10 +257,11 @@
           <p class="p-4">Account info:</p>
           <div class="title border">
             <div>
-              <p>Balance: 123456 EUR</p>
+              <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
             </div>
             <div>
-              <p>Card added: **** **** **** **12</p>
+<!--              Card added: **** **** **** **12-->
+                <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
             </div>
           </div>
         </div>
@@ -266,6 +269,7 @@
         <div class="profile">
           <div class="left-section">
             <div class="profile-languages">
+
               <p>Languages</p>
               <ul>
                 <li class="skills">Lithuanian</li>
@@ -278,30 +282,32 @@
               <div class="services-count">8</div>
               <div class="services-text">services bought</div>
 
-
             </div>
           </div>
           <div class="vertical-line"></div>
           <div class="right-section">
             <p>Description</p>
-            <div class="profile-description">
-              👋 Hi, there, Welcome to my profile!<br><br>
-              🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>
+              <div class="profile-description" th:utext="${userProfile.description}">
 
-              I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>
+              </div>
+<!--            <div class="profile-description">-->
+<!--              👋 Hi, there, Welcome to my profile!<br><br>-->
+<!--              🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>-->
 
-              If you are:
-              <br>
-              ⭐ A developer with some experience.<br>
-              ⭐ Ready to work on this project full time.<br>
-              ⭐ Someone who likes to work remotely.<br>
-              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
+<!--              I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>-->
 
-              Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>
+<!--              If you are:-->
+<!--              <br>-->
+<!--              ⭐ A developer with some experience.<br>-->
+<!--              ⭐ Ready to work on this project full time.<br>-->
+<!--              ⭐ Someone who likes to work remotely.<br>-->
+<!--              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>-->
 
-              Regards,<br>
-              Jogn Doe looking for someone smart.
-            </div>
+<!--              Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>-->
+
+<!--              Regards,<br>-->
+<!--              Jogn Doe looking for someone smart.-->
+<!--            </div>-->
           </div>
         </div>
       </div>

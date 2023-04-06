@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Edit profile</title>
@@ -239,7 +239,7 @@
                     </div>
                     <div>
                         <div class="profile-name">
-                            John Doe
+                            <td th:text="${userProfile.getName()} + ' ' + ${userProfile.getSurname()}"></td>
                         </div>
                         <div class="info">
                             <p style="text-align: left; padding-left: 0px">Ratings</p>
@@ -263,15 +263,18 @@
                     <p class="p-4">Account info:</p>
                     <div class="border p-3">
                         <div class="">
-                            <p>Balance: 123456 EUR</p>
+                            <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
                         </div>
                         <div class="">
-                            <p>Card added: **** **** **** **12</p>
+                            <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-md-3 mb-3">
                                 <label>Card number</label>
-                                <input type="text" class="form-control" placeholder="**** **** **** **12">
+                                <form action="#" method="post" th:action="@{/private/edit}" th:object="${userEdit}">
+                                    <input type="text" class="form-control" placeholder="**** **** **** **12" th:field="*{userEdit.accountIdaccount.cardNumber}">
+                                </form>
+
                             </div>
                             <div class="col-md-3 mb-3">
                                 <label>Expiration</label>
@@ -331,21 +334,21 @@
                     <div class="right-section">
 
                         <p>Description</p>
-                        <div class="profile-description border" contentEditable="true">
-                            👋 Hi, there, Welcome to my profile!<br><br>
-                            🏆Developer, Website Builder and Designer, eCommerce VA, Logo Designer, Video and Photo Editor.<br><br>
+                        <div class="profile-description border" contentEditable="true" th:utext="${userProfile.description}">
+<!--                            👋 Hi, there, Welcome to my profile!<br><br>-->
+<!--                            🏆Developer, Website Builder and Designer, eCommerce VA, Logo Designer, Video and Photo Editor.<br><br>-->
 
-                            Who is looking for employment in a remote type of job. Ready to use my all programming and eCommerce management skills to help people with various kind of problems, to be helpful in projects, keep pursuing the mission of a company or team.<br><br>
+<!--                            Who is looking for employment in a remote type of job. Ready to use my all programming and eCommerce management skills to help people with various kind of problems, to be helpful in projects, keep pursuing the mission of a company or team.<br><br>-->
 
-                            ⭐ Developer for 5 years.<br>
-                            ⭐ Website builder, designer and eCommerce VA in 5+ projects for 4 years.<br>
-                            ⭐ 100% Client Satisfaction's consistent best quality and service delivery.<br>
-                            ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
+<!--                            ⭐ Developer for 5 years.<br>-->
+<!--                            ⭐ Website builder, designer and eCommerce VA in 5+ projects for 4 years.<br>-->
+<!--                            ⭐ 100% Client Satisfaction's consistent best quality and service delivery.<br>-->
+<!--                            ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>-->
 
-                            I’m always on the lookout to learn the latest technology and welcome all projects that require me to get familiar with new technologies.<br><br>
+<!--                            I’m always on the lookout to learn the latest technology and welcome all projects that require me to get familiar with new technologies.<br><br>-->
 
-                            Regards,<br>
-                            Jogn Doe
+<!--                            Regards,<br>-->
+<!--                            Jogn Doe-->
                         </div>
                     </div>
                 </div>
