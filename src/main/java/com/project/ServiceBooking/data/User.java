@@ -3,7 +3,9 @@ package com.project.ServiceBooking.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.engine.spi.Status;
 
+import javax.management.relation.Role;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -27,11 +29,11 @@ public class User {
 
     @Column(name = "Password", nullable = false, length = 45)
     private String password;
-
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "Status", nullable = false, length = 45)
-    private String status;
+    private Status status;
 
-    @Column(name = "Picture", nullable = false, length = 45)
+    @Column(name = "Picture", nullable = false, length = 255)
     private String picture;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -44,8 +46,9 @@ public class User {
     @Column(name = "Description", length = 5000)
     private String description;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "Role", nullable = false, length = 45)
-    private String role;
+    private Role role;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seller_id_seller")
