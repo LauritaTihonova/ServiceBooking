@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.engine.spi.Status;
 
-import javax.management.relation.Role;
+
 import java.util.LinkedHashSet;
 import java.util.Set;
 
