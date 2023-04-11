@@ -221,7 +221,7 @@
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
         <button class="header"><a href="/registration">Register</a></button>
-        <button class="header"><a href="/profile">My profile</a></button>
+        <button class="header"><a href="/private">My profile</a></button>
         <button class="header"><a href="contact.html">Contact Us</a></button>
         <button class="header"><a href="about.html">About Us</a></button>
         <button class="header"><a href="/services">Our Services</a></button>
@@ -229,107 +229,110 @@
     </nav>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
-            <div class="profile-container">
-                <div class="profile">
-                    <div class="profile-image">
-                        <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
+<form action="#" th:action="@{/private/edit}" th:object="${userProfile}" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
+                <div class="profile-container">
+                    <div class="profile">
+                        <div class="profile-image">
+                            <img th:src="${userProfile.picture}" alt="Profile Picture">
+                        </div>
+                        <div>
+                            <div class="profile-name">
+<!--                                some other important info to be passed further:-->
+                                <input type="hidden" th:field="*{id}">
+                                <input type="hidden" th:field="*{email}">
+                                <input type="hidden" th:field="*{password}">
+                                <input type="hidden" th:field="*{status}">
+                                <input type="hidden" th:field="*{picture}">
+                                <input type="hidden" th:field="*{accountIdaccount}">
+                                <input type="hidden" th:field="*{role}">
+                                <input type="hidden" th:field="*{sellerIdSeller}">
+                                <input type="hidden" th:field="*{payments}">
+                                <input type="hidden" th:field="*{services}">
+                                <input type="hidden" th:field="*{reviews}">
+                                <input type="hidden" th:field="*{bookings}">
+                                <input type="hidden" th:field="*{accountIdaccount.money}">
+
+                                <!--                                Edit name and surname: -->
+                                <input type="text" th:field="*{name}" placeholder="name" class="form-control">
+                                <input type="text" th:field="*{surname}" placeholder="surname" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="profile-buttons">
+                            <div class="profile-cta">
+                                <button type="submit">Save changes</button>
+                            </div>
+                        </div>
                     </div>
+
                     <div>
-                        <div class="profile-name">
-<!--                            John Doe-->
-                            <td th:text="${userProfile.getName()} + ' ' + ${userProfile.getSurname()}"></td>
-                        </div>
+                        <p class="p-4">Account info:</p>
+                        <div class="border p-3">
+                            <div class="">
+<!--                                balance should not be changed by user: -->
+                                <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
 
-
-                    </div>
-                    <div class="profile-buttons">
-                        <div class="profile-cta">
-                            <button>Save changes</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-                    <p class="p-4">Account info:</p>
-                    <div class="border p-3">
-                        <div class="">
-                            <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
-                        </div>
-                        <div class="">
-<!--                            Card added: **** **** **** **12-->
-                            <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
-                        </div>
-                        <div class="row justify-content-center">
-                            <div class="col-md-3 mb-3">
-                                <label>Card number</label>
-                                <input type="text" class="form-control" placeholder="**** **** **** **12">
                             </div>
-                            <div class="col-md-3 mb-3">
-                                <label>Expiration</label>
-                                <input type="text" class="form-control" placeholder="mm/yy">
+                            <div class="">
+    <!--                            -->
+                                <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
                             </div>
-                            <div class="col-md-3 mb-3">
-                                <label>CVV</label>
-                                <input type="text" class="form-control" placeholder="123">
+                            <div class="row justify-content-center">
+                                <div class="col-md-3 mb-3">
+<!--                                    edit card number: -->
+                                    <label>Card number</label>
+                                    <input type="text" th:field="*{accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
+                                </div>
+                                <div class="col-md-3 mb-3">
+<!--                                    -->
+                                    <label>Expiration</label>
+                                    <input type="text" class="form-control" placeholder="mm/yy">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label>CVV</label>
+                                    <input type="text" class="form-control" placeholder="123">
+                                </div>
                             </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="profile">
-                    <div class="left-section">
-                        <div class="profile-languages">
-
-                            <p>Languages</p>
-
-                            <ul class="list-group" id="language list">
-                                <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>
-                                <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>
-                                <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>
-                            </ul>
-
-
-                        </div>
-                        <div class="profile-services">
-
-                            <p>Services</p>
-                            <div class="services-count">8</div>
-                            <div class="services-text">completed projects</div>
-
 
                         </div>
                     </div>
-                    <div class="vertical-line"></div>
-                    <div class="right-section">
 
-                        <p>Description</p>
-                        <div class="profile-description border" contentEditable="true" th:utext="${userProfile.description}">
-<!--                            👋 Hi, there, Welcome to my profile!<br><br>-->
-<!--                            🏆Looking for a website builder who is ready to tackle on with a new challenge.<br><br>-->
+                    <div class="profile">
+                        <div class="left-section">
+                            <div class="profile-languages">
 
-<!--                            I am looking for a experienced IT smarty to help me create a website. Who is ready to fully develop my all programming and eCommerce management needs to help people with various kind of idea exchange.<br><br>-->
+                                <p>Languages</p>
+                                <input type="text" th:field="*{language}" class="form-control" placeholder="language">
+<!--                                <ul class="list-group" id="language list">-->
+<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>-->
+<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>-->
+<!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>-->
+<!--                                </ul>-->
 
-<!--                            If you are:-->
-<!--                            <br>-->
-<!--                            ⭐ A developer with some experience.<br>-->
-<!--                            ⭐ Ready to work on this project full time.<br>-->
-<!--                            ⭐ Someone who likes to work remotely.<br>-->
-<!--                            ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>-->
+                            </div>
+                            <div class="profile-services">
 
-<!--                            Ping me a message and see what happens. I’m always on the lookout for bright minded people to work with me.<br><br>-->
+                                <p>Services</p>
+                                <div class="services-count" th:text="${userProfile.bookings.size()}"></div>
+                                <div class="services-text">completed projects</div>
 
-<!--                            Regards,<br>-->
-<!--                            Jogn Doe looking for someone smart.-->
+                            </div>
+                        </div>
+                        <div class="vertical-line"></div>
+                        <div class="right-section">
+
+                            <p>Description</p>
+                            <textarea type="text" th:field="*{description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 </body>
 </html>
