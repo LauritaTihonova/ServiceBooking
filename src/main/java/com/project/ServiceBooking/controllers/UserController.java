@@ -34,7 +34,7 @@ public class UserController {
             String encodedPassword = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPassword);
             user.setRole(Role.CLIENT);
-            user.setStatus(Status.ACTIVE);
+//          user.setStatus(Status.ACTIVE);
             userService.saveUser(user);
             return "/login";
         }else{

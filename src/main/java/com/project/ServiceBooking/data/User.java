@@ -30,6 +30,7 @@ public class User {
 
     @Column(name = "Password", nullable = false, length = 45)
     private String password;
+
     @Enumerated(value = EnumType.STRING)
     @Column(name = "Status", nullable = false, length = 45)
     private Status status;
