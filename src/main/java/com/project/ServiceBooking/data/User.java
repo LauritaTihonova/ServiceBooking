@@ -3,12 +3,6 @@ package com.project.ServiceBooking.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-<<<<<<< HEAD
-import org.hibernate.engine.spi.Status;
-
-=======
-import org.hibernate.annotations.Cascade;
->>>>>>> 0e75f5bca6784a7e0ebf96dac77843946e92695b
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -34,7 +28,6 @@ public class User {
 
     @Column(name = "Password", nullable = false, length = 45)
     private String password;
-
     @Enumerated(value = EnumType.STRING)
     @Column(name = "Status", nullable = false, length = 45)
     private Status status;
@@ -42,8 +35,8 @@ public class User {
     @Column(name = "Picture",  length = 255)
     private String picture;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_account", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "id_account", nullable = true)
     private Account accountIdaccount;
 
     @Column(name = "Language", length = 45)
@@ -56,20 +49,20 @@ public class User {
     @Column(name = "Role", nullable = false, length = 45)
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_seller")
     private Seller sellerIdSeller;
 
-    @OneToMany(mappedBy = "idUsers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idUsers")
     private Set<Payment> payments = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "usersIdUsers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersIdUsers")
     private Set<Service> services = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "usersIdUsers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usersIdUsers")
     private Set<Review> reviews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idUsers", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idUsers")
     private Set<Booking> bookings = new LinkedHashSet<>();
 
 }
