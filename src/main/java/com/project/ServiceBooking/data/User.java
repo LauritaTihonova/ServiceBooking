@@ -3,6 +3,7 @@ package com.project.ServiceBooking.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -35,7 +36,7 @@ public class User {
     @Column(name = "Picture", nullable = false, length = 255)
     private String picture;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_account", nullable = false)
     private Account accountIdaccount;
 
@@ -49,20 +50,20 @@ public class User {
     @Column(name = "Role", nullable = false, length = 45)
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_seller")
     private Seller sellerIdSeller;
 
-    @OneToMany(mappedBy = "idUsers")
+    @OneToMany(mappedBy = "idUsers", cascade = CascadeType.ALL)
     private Set<Payment> payments = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "usersIdUsers")
+    @OneToMany(mappedBy = "usersIdUsers", cascade = CascadeType.ALL)
     private Set<Service> services = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "usersIdUsers")
+    @OneToMany(mappedBy = "usersIdUsers", cascade = CascadeType.ALL)
     private Set<Review> reviews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idUsers")
+    @OneToMany(mappedBy = "idUsers", cascade = CascadeType.ALL)
     private Set<Booking> bookings = new LinkedHashSet<>();
 
 }

@@ -240,15 +240,14 @@
           </div>
           <div>
             <div class="profile-name">
-<!--              Name Surname-->
-                <td th:text="${userProfile.getName()} + ' ' + ${userProfile.getSurname()}"></td>
-
+<!--              Name Surname get from the object-->
+                <td th:text="${userProfile.name} + ' ' + ${userProfile.surname}"></td>
             </div>
 
           </div>
           <div class="profile-buttons">
             <div class="profile-cta">
-              <button type="button"><a href="clientPrivate/edit">Edit</a></button>
+              <button type="button"><a href="private/edit">Edit</a></button>
             </div>
           </div>
         </div>
@@ -272,9 +271,9 @@
 
               <p>Languages</p>
               <ul>
-                <li class="skills">Lithuanian</li>
-                <li class="skills">English</li>
-                <li class="skills">Spanish</li>
+                <li class="skills" th:text="${userProfile.language}"></li>
+<!--                <li class="skills">English</li>-->
+<!--                <li class="skills">Spanish</li>-->
               </ul>
             </div>
             <div class="profile-services">

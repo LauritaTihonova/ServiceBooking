@@ -276,9 +276,9 @@
             <div class="profile-languages">
               <p>Languages</p>
               <ul>
-                <li class="skills">Lithuanian</li>
-                <li class="skills">English</li>
-                <li class="skills">Spanish</li>
+                <li class="skills" th:text="${userProfile.language}"></li>
+<!--                <li class="skills">English</li>-->
+<!--                <li class="skills">Spanish</li>-->
               </ul>
             </div>
             <div class="profile-services">
@@ -287,14 +287,13 @@
               <div class="services-text">completed projects</div>
               <p>Skills</p>
               <ul>
-                <li class="skills">Web Design</li>
-                <li class="skills">Responsive Design</li>
-                <li class="skills">Front-end Development</li>
+                <li class="skills" th:text="${userProfile.sellerIdSeller.skills}"></li>
+<!--                <li cass="skills">Front-end Development</li>-->
               </ul>
               <p>Education</p>
               <ul>
-                <li class="skills">Kaunas Technology university</li>
-                <li class="skills">Code Academy</li>
+                <li class="skills" th:text="${userProfile.sellerIdSeller.education}"></li>
+<!--                <li class="skills">Code Academy</li>-->
               </ul>
             </div>
           </div>

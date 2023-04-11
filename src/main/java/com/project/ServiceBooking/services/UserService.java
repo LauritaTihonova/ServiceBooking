@@ -2,6 +2,7 @@ package com.project.ServiceBooking.services;
 
 import com.project.ServiceBooking.data.User;
 import com.project.ServiceBooking.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 @Service
 public class UserService {
 
+    @Autowired
     private final UserRepository userRepository;
 
     public UserService(UserRepository userRepository) {
