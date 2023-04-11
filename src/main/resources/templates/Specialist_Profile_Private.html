@@ -221,7 +221,7 @@
   <nav>
     <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
     <button class="header"><a href="/registration">Register</a></button>
-    <button class="header"><a href="/profile">My profile</a></button>
+    <button class="header"><a href="/private">My profile</a></button>
     <button class="header"><a href="contact.html">Contact Us</a></button>
     <button class="header"><a href="services.html">About Us</a></button>
     <button class="header"><a href="about.html">Our Services</a></button>
@@ -235,7 +235,7 @@
       <div class="profile-container">
         <div class="profile">
           <div class="profile-image">
-            <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
+            <img th:src="${userProfile.picture}" alt="Profile Picture">
           </div>
           <div>
             <div class="profile-name">
@@ -283,7 +283,7 @@
             </div>
             <div class="profile-services">
               <p>Services</p>
-              <div class="services-count">15</div>
+              <div class="services-count" th:text="${userProfile.services.size()}"></div>
               <div class="services-text">completed projects</div>
               <p>Skills</p>
               <ul>
@@ -300,22 +300,7 @@
           <div class="vertical-line"></div>
           <div class="right-section">
             <p>Description</p>
-            <div class="profile-description" th:utext="${userProfile.description}">
-<!--              👋 Hi, there, Welcome to my profile!<br><br>-->
-<!--              🏆Developer, Website Builder and Designer, eCommerce VA, Logo Designer, Video and Photo Editor.<br><br>-->
-
-<!--              Who is looking for employment in a remote type of job. Ready to use my all programming and eCommerce management skills to help people with various kind of problems, to be helpful in projects, keep pursuing the mission of a company or team.<br><br>-->
-
-<!--              ⭐ Developer for 5 years.<br>-->
-<!--              ⭐ Website builder, designer and eCommerce VA in 5+ projects for 4 years.<br>-->
-<!--              ⭐ 100% Client Satisfaction's consistent best quality and service delivery.<br>-->
-<!--              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>-->
-
-<!--              I’m always on the lookout to learn the latest technology and welcome all projects that require me to get familiar with new technologies.<br><br>-->
-
-<!--              Regards,<br>-->
-<!--              Jogn Doe-->
-            </div>
+            <textarea class="profile-description" th:utext="${userProfile.description}" rows="21" cols="20"/>
           </div>
         </div>
       </div>

@@ -12,6 +12,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.ArrayList;
 
 
@@ -37,7 +38,7 @@ public class MainController {
 
     @GetMapping("/private")
     public String specialistPrivateProfile(Model model){
-        User user = userService.findById(908); // in future should be changed!!!!
+        User user = userService.findById(8); // in future should be changed!!!!
         model.addAttribute("userProfile", user);
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Private.html";
@@ -48,7 +49,7 @@ public class MainController {
     }
     @GetMapping("/private/edit") // display an edit page
     public String privateEditPage(Model model){
-        User user = userService.findById(908);
+        User user = userService.findById(8);
         model.addAttribute("userProfile", user); // here I 'push' in user object into html code
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Edit.html";

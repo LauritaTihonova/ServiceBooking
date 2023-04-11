@@ -36,7 +36,6 @@ public class User {
     @Column(name = "Picture",  length = 255)
     private String picture;
 
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_account", nullable = false)
     private Account accountIdaccount;
