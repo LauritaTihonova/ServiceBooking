@@ -13,7 +13,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_users", nullable = false)
     private Integer id;
 
@@ -32,11 +32,11 @@ public class User {
     @Column(name = "Status", nullable = false, length = 45)
     private Status status;
 
-    @Column(name = "Picture", nullable = false, length = 255)
+    @Column(name = "Picture",  length = 255)
     private String picture;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_account", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "id_account", nullable = true)
     private Account accountIdaccount;
 
     @Column(name = "Language", length = 45)

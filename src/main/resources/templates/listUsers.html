@@ -12,14 +12,17 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th >Name</th>
-                <th >Surname</th>
-                <th>email</th>
-                <th>password</th>
-                <th>Role</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Email</th>
+                <th>Password</th>
                 <th>Language</th>
                 <th>Description</th>
+                <th>Picture</th>
+                <th>Role</th>
                 <td>Status</td>
+                <td>Id_specialist</td>
+                <td>Id_account</td>
             </tr>
             </thead>
             <tbody>
@@ -28,10 +31,15 @@
                 <td th:text="${user.surname}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.password}"></td>
-                <td th:text="${user.role}"></td>
                 <td th:text="${user.language}"></td>
                 <td th:text="${user.description}"></td>
+                <td th:text="${user.picture}"></td>
+                <td th:text="${user.role}"></td>
                 <td th:text="${user.status}"></td>
+                <td th:text="${user.sellerIdSeller}"></td>
+                <td th:text="${user.accountIdaccount}"></td>
+                <td><a th:href="@{updateUser/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{deleteUser/{id}(id=${user.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
