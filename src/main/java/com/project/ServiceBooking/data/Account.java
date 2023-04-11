@@ -22,7 +22,7 @@ public class Account {
     @Column(name = "card_number", length = 45)
     private String cardNumber;
 
-    @OneToMany(mappedBy = "accountIdaccount")
+    @OneToMany(mappedBy = "accountIdaccount", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<User> users = new LinkedHashSet<>();
 
 }

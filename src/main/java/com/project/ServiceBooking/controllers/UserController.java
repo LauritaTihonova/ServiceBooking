@@ -9,10 +9,17 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+=======
 import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Timestamp;
+>>>>>>> 0e75f5bca6784a7e0ebf96dac77843946e92695b
 import java.util.List;
 import java.util.UUID;
 
@@ -45,6 +52,16 @@ public class UserController {
     @PostMapping("/process_register_client")
     public String addClient(User user, Model model) throws MessagingException {
         User userFromDb = userService.findByEnterEmail(user.getEmail());
+<<<<<<< HEAD
+        if (userFromDb == null) {
+            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(encodedPassword);
+            user.setRole(Role.CLIENT);
+//          user.setStatus(Status.ACTIVE);
+            userService.saveUser(user);
+            return "/login";
+=======
         if(userFromDb == null) {
             userService.saveClient(user);
             //Verification
@@ -54,6 +71,7 @@ public class UserController {
 //            //send verification email
 //            emailService.sendHtmlMail(user);
             model.addAttribute("message","A verification email has been sent ti your email address.");
+>>>>>>> 0e75f5bca6784a7e0ebf96dac77843946e92695b
         }else{
             //model.addAttribute("UserAlreadyExist", true);
             model.addAttribute("message","User already exist.");
