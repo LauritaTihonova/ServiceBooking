@@ -1,15 +1,20 @@
 package com.project.ServiceBooking.controllers;
 
-import com.project.ServiceBooking.data.*;
+import com.project.ServiceBooking.data.Status;
+import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.data.VerificationToken;
 import com.project.ServiceBooking.services.EmailService;
 import com.project.ServiceBooking.services.UserService;
 import com.project.ServiceBooking.services.VerificationTokenService;
 import jakarta.mail.MessagingException;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 import java.sql.Timestamp;
@@ -22,7 +27,7 @@ public class UserController {
 
     private final UserService userService;
     private final VerificationTokenService verificationTokenService;
-    private EmailService emailService;
+    private final EmailService emailService;
 
     public UserController(UserService userService, VerificationTokenService verificationTokenService, EmailService emailService) {
         this.userService = userService;
@@ -72,7 +77,7 @@ public class UserController {
             verificationTokenService.save(user, token);
             //send verification email
             emailService.sendHtmlMail(user);
-            model.addAttribute("message","A verification email has been sent ti your email address.");
+            model.addAttribute("message","A verification email has been sent to your email address.");
         }else{
             //model.addAttribute("UserAlreadyExist", true);
             model.addAttribute("message","User already exist.");
