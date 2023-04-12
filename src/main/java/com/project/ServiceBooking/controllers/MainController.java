@@ -13,6 +13,9 @@ import com.project.ServiceBooking.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -25,9 +28,6 @@ import java.util.List;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
-import java.util.ArrayList;
 
 
 
@@ -53,7 +53,11 @@ public class MainController {
 
     @GetMapping("/private")
     public String specialistPrivateProfile(Model model){
-        User user = userService.findById(8); // in future should be changed!!!!
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        User user = userService.findByEnterEmail(currentUserName);
+
         model.addAttribute("userProfile", user);
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Private.html";
@@ -64,7 +68,10 @@ public class MainController {
     }
     @GetMapping("/private/edit") // display an edit page
     public String privateEditPage(Model model){
-        User user = userService.findById(8);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        User user = userService.findByEnterEmail(currentUserName);
+
         model.addAttribute("userProfile", user); // here I 'push' in user object into html code
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Edit.html";
@@ -74,21 +81,6 @@ public class MainController {
         }
     }
 
-//
-//    @GetMapping("/clientPrivate")
-//    public String clientPrivateProfile(Model model){
-//        User user = clientProfilePrivateService.getUser();
-//        model.addAttribute("userProfile", user);
-//        return "Client_Profile_Private.html";
-//    }
-//
-//    @GetMapping("/clientPrivate/edit")
-//    public String clientPrivateEdit(Model model){
-//        User user = clientProfilePrivateService.getUser();
-//        model.addAttribute("userProfile", user);
-//        return "Client_Profile_Edit.html";
-//    }
-
 
     @PostMapping("/private/edit")
     public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model){
@@ -96,19 +88,6 @@ public class MainController {
         model.addAttribute("userProfile", user);
         return new ModelAndView("redirect:/private", model);
     }
-///
-//    @Autowired
-//    UserRepository userRepository;
-//    @GetMapping("/private/editUser")
-//    public ModelAndView showPrivateEdit(){
-//        User user = userRepository.findById(403).get();
-//        ModelAndView mav = new ModelAndView("Client_Profile_Edit.html");
-//        mav.addObject("userProfile", user);
-//        return mav;
-//    }
-
-
-
 
     @RequestMapping(path = "/payment")
     public String payment() {
@@ -130,7 +109,6 @@ public class MainController {
         model.addAttribute("servicesCategories", servicesCategories);
         return "ServiceCategoryList.html";
     }
-
 
     @Autowired
     ServicesService servicesService;

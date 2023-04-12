@@ -286,7 +286,7 @@
           <div class="vertical-line"></div>
           <div class="right-section">
             <p>Description</p>
-              <textarea class="profile-description form-control" th:utext="${userProfile.description}" rows="21" cols="80"/>
+              <div class="profile-description" th:text="${userProfile.description}"/>
           </div>
         </div>
       </div>
