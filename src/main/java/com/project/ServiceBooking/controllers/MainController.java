@@ -130,7 +130,8 @@ public class MainController {
         return "contact-us.html";
     }
 
-
+    @RequestMapping(path = "contact-us/submit")
+    public String submitForm() {return "submit.html";}
     @Autowired
     ServicesCategoryService servicesCategoryService;
 
@@ -140,6 +141,8 @@ public class MainController {
         model.addAttribute("servicesCategories", servicesCategories);
         return "ServiceCategoryList.html";
     }
+
+
 
 
     @Autowired

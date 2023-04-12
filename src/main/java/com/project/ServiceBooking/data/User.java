@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import org.hibernate.engine.spi.Status;
-
 
 import org.hibernate.annotations.Cascade;
 
