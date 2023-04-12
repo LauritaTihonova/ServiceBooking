@@ -30,6 +30,11 @@ public class UserController {
         this.emailService = emailService;
     }
 
+    @GetMapping("/t")
+    public String test(){
+        return null;
+    }
+
     @GetMapping("/registration_client")
     public String showRegistrationFormClient(Model model) {
         model.addAttribute("user", new User());
