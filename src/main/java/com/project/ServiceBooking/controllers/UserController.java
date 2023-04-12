@@ -43,11 +43,6 @@ public class UserController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/t")
-    public String test(){
-        return null;
-    }
-
     @GetMapping("/registration_client")
     public String showRegistrationFormClient(Model model) {
         model.addAttribute("user", new User());
@@ -80,10 +75,10 @@ public class UserController {
             userService.saveClient(user);
             //Verification
             // create token
-//            String token = UUID.randomUUID().toString();
-//            verificationTokenService.save(user, token);
-//            //send verification email
-//            emailService.sendHtmlMail(user);
+            String token = UUID.randomUUID().toString();
+            verificationTokenService.save(user, token);
+            //send verification email
+            emailService.sendHtmlMail(user);
             model.addAttribute("message","A verification email has been sent ti your email address.");
 <<<<<<< HEAD
 
@@ -103,10 +98,10 @@ public class UserController {
             userService.saveSpecialist(user);
             //Verification
             // create token
-//            String token = UUID.randomUUID().toString();
-//            verificationTokenService.save(user, token);
-//            //send verification email
-//            emailService.sendHtmlMail(user);
+            String token = UUID.randomUUID().toString();
+            verificationTokenService.save(user, token);
+            //send verification email
+            emailService.sendHtmlMail(user);
             model.addAttribute("message","A verification email has been sent ti your email address.");
         }else{
             //model.addAttribute("UserAlreadyExist", true);

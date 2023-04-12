@@ -20,8 +20,8 @@ public class ServicesCategory {
     @Column(name = "Category", nullable = false, length = 45)
     private String category;
 
-//    @Column(name = "Sub_category", nullable = false, length = 45)
-//    private String subCategory;
+    @Column(name = "Sub_category", nullable = false, length = 45)
+    private String subCategory;
 
     @OneToMany(mappedBy = "idServicesCategory")
     private Set<Service> services = new LinkedHashSet<>();

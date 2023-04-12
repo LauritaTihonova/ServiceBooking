@@ -44,8 +44,8 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setRole(Role.CLIENT);
-        //user.setStatus(Status.INACTIVE);
-        user.setStatus(Status.ACTIVE);
+        user.setStatus(Status.INACTIVE);
+       //user.setStatus(Status.ACTIVE);
         return saveUser(user);
     }
     public User saveSpecialist(User user){
@@ -53,8 +53,8 @@ public class UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setRole(Role.SPECIALIST);
-        //user.setStatus(Status.INACTIVE);
-        user.setStatus(Status.ACTIVE);
+        user.setStatus(Status.INACTIVE);
+        //user.setStatus(Status.ACTIVE);
         return saveUser(user);
     }
 
