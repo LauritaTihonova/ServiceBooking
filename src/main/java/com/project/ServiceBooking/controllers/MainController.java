@@ -120,6 +120,16 @@ public class MainController {
         return "Registration_Two_Options.html";
     }
 
+    @RequestMapping(path = "/about-us")
+    public String aboutUs() {
+        return "about-us.html";
+    }
+
+    @RequestMapping(path = "/contact-us")
+    public String contactUs() {
+        return "contact-us.html";
+    }
+
 
     @Autowired
     ServicesCategoryService servicesCategoryService;

@@ -1,16 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
+    <title>Welcome to Service Booking!</title>
     <meta charset="UTF-8">
-    <title>Service Description</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <style>
-                     a {
+
+    .mySlides {display:none;
+    }
+         a {
         color: white;
         text-decoration:none;
         }
@@ -25,51 +34,40 @@
         border-radius: 5px;
         cursor: pointer;
         margin: 15px 10px 0px 10px;
-        transition: background-color 0.3s ease-in-out;
-        }
-               body {
+        transition: background-color 0.3s ease-in-out;}
+
+       body {
         background-color: #f8f9fa;
       }
-      th, td {
+      p {
         border: 1px solid #955aed;
         border-radius: 5px;
-        padding: 10px;
-        margin: 200px 400px 200px 400px;
+        padding: 30px;
+        margin: 50px 400px 20px 400px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         transition: transform 0.3s ease-in-out;
         background-color: white;
         text-align: center;
-       }
-
-      table {
-      border-collapse: collapse;
-      margin: 40px 200px;
+      }
+      .main-text{
+          text-align: center;
+          color: #955aed;
+          padding-top: 80px;
       }
     </style>
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
         <button class="header"><a href="/registration">Register</a></button>
-        <button class="header"><a href="/profile">My profile</a></button>
-        <button class="header"><a href="/contact-us.html">Contact Us</a></button>
-        <button class="header"><a href="/about-us.html">About Us</a></button>
+        <button class="header"><a href="/private">My profile</a></button>
+        <button class="header"><a href="/contact-us">Contact Us</a></button>
+        <button class="header"><a href="/about-us">About Us</a></button>
         <button class="header"><a href="/services">Our Services</a></button>
         <button class="header"><a href="/home">Home</a></button>
     </nav>
 </head>
 <body>
+<h1 class="main-text">About Us</h1>
 
-<table>
-    <tr>
-        <th>Service name</th>
-        <th>Description</th>
-        <th>Price, EUR</th>
-    </tr>
-    <tr>
-<!--    <tr th:each="service : ${serviceDescription}">-->
-        <td th:text="${service.name}"></td>
-        <td th:text="${service.description}"></td>
-        <td th:text="${service.price}"></td>
-    </tr>
-</table>
+
 </body>
 </html>
