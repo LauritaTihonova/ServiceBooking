@@ -9,17 +9,23 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+<<<<<<< HEAD
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+=======
+>>>>>>> 295baee048b7c12280607fd939a26618e744397f
 import org.springframework.web.bind.annotation.*;
 
 
 import java.sql.Timestamp;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 295baee048b7c12280607fd939a26618e744397f
 import java.util.List;
 import java.util.UUID;
 
@@ -37,16 +43,22 @@ public class UserController {
         this.emailService = emailService;
     }
 
-    @GetMapping("/registration")
-    public String showRegistrationForm(Model model) {
+    @GetMapping("/registration_client")
+    public String showRegistrationFormClient(Model model) {
+        model.addAttribute("user", new User());
+        return "registration";
+    }
+    @GetMapping("/registration_specialist")
+    public String showRegistrationFormSpecialist(Model model) {
         model.addAttribute("user", new User());
         return "registration";
     }
     com.project.ServiceBooking.data.Role myRole = com.project.ServiceBooking.data.Role.CLIENT;
 
-    @PostMapping("/process_register")
-    public String addUser(User user, Model model) throws MessagingException {
+    @PostMapping("/process_register_client")
+    public String addClient(User user, Model model) throws MessagingException {
         User userFromDb = userService.findByEnterEmail(user.getEmail());
+<<<<<<< HEAD
 
         if (userFromDb == null) {
             BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -57,13 +69,9 @@ public class UserController {
             userService.saveUser(user);
             return "/login";
 
+=======
+>>>>>>> 295baee048b7c12280607fd939a26618e744397f
         if(userFromDb == null) {
-//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//            String encodedPassword = passwordEncoder.encode(user.getPassword());
-//            user.setPassword(encodedPassword);
-//            user.setRole(Role.CLIENT);
-//            user.setStatus(Status.INACTIVE);
-//            userService.saveUser(user);
             userService.saveClient(user);
             //Verification
             // create token
@@ -72,13 +80,36 @@ public class UserController {
 //            //send verification email
 //            emailService.sendHtmlMail(user);
             model.addAttribute("message","A verification email has been sent ti your email address.");
+<<<<<<< HEAD
 
+=======
+>>>>>>> 295baee048b7c12280607fd939a26618e744397f
         }else{
             //model.addAttribute("UserAlreadyExist", true);
             model.addAttribute("message","User already exist.");
         }
         return "/login";
     }
+
+    @PostMapping("/process_register_specialist")
+    public String addSpecialist(User user, Model model) throws MessagingException {
+        User userFromDb = userService.findByEnterEmail(user.getEmail());
+        if(userFromDb == null) {
+            userService.saveSpecialist(user);
+            //Verification
+            // create token
+//            String token = UUID.randomUUID().toString();
+//            verificationTokenService.save(user, token);
+//            //send verification email
+//            emailService.sendHtmlMail(user);
+            model.addAttribute("message","A verification email has been sent ti your email address.");
+        }else{
+            //model.addAttribute("UserAlreadyExist", true);
+            model.addAttribute("message","User already exist.");
+        }
+        return "/login";
+    }
+
 
     @GetMapping("/activation")
     public String activation(@RequestParam("token") String token, Model model) throws MessagingException {

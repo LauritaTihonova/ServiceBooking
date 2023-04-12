@@ -13,14 +13,15 @@ import java.util.Set;
 @Table(name = "services_category")
 public class ServicesCategory {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_services_category", nullable = false)
     private Integer id;
 
     @Column(name = "Category", nullable = false, length = 45)
     private String category;
 
-    @Column(name = "Sub_category", nullable = false, length = 45)
-    private String subCategory;
+//    @Column(name = "Sub_category", nullable = false, length = 45)
+//    private String subCategory;
 
     @OneToMany(mappedBy = "idServicesCategory")
     private Set<Service> services = new LinkedHashSet<>();
