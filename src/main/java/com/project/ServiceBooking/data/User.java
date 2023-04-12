@@ -3,12 +3,12 @@ package com.project.ServiceBooking.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-<<<<<<< HEAD
+
 import org.hibernate.engine.spi.Status;
 
-=======
+
 import org.hibernate.annotations.Cascade;
->>>>>>> 0e75f5bca6784a7e0ebf96dac77843946e92695b
+
 
 import java.util.LinkedHashSet;
 import java.util.Set;
