@@ -9,7 +9,7 @@
     <h1 class="text-center mb-4">User Registration</h1>
     <div class="row justify-content-center">
         <div class="col-md-6 col-lg-4">
-            <form th:action="@{/auth/process_register_client}" th:object="${user}" method="post">
+            <form th:action="@{/auth/process_register_specialist}" th:object="${user}" method="post">
                 <div class="form-floating mb-3">
                     <label for="floatingInputUsername">Name</label>
                     <input type="text" class="form-control" th:field="*{name}" id="floatingInputUsername" placeholder="Name" required autofocus>
