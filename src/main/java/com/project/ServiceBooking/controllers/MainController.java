@@ -117,7 +117,8 @@ public class MainController {
         return "contact-us.html";
     }
 
-
+    @RequestMapping(path = "contact-us/submit")
+    public String submitForm() {return "submit.html";}
     @Autowired
     ServicesCategoryService servicesCategoryService;
 
