@@ -25,4 +25,8 @@ public class LanguageService {
     public List<Language> saveLanguages(List<Language> languages){
         return languageRepository.saveAll(languages);
     }
+
+    public void deleteById(Integer languageId){
+        languageRepository.deleteById(languageId);
+    }
 }
