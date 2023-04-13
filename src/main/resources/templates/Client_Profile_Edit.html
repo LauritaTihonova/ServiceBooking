@@ -229,7 +229,7 @@
     </nav>
 </head>
 <body>
-<form action="#" th:action="@{/private/edit}" th:object="${userProfile}" method="post">
+<form action="#" th:action="@{/private/edit}" th:object="${userProfile}" th:object="${languages}" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
@@ -306,33 +306,42 @@
 
                                 <p>Languages</p>
 
-                                <ul class="list-group" th:each="language:${languages}">
-                                    <li class="list-group-item form-horizontal">
-                                        <input readonly type="text" class="skills" th:value="${language.getLanguage()}">
-                                        <button class="deleteBtn">Delete</button>
-                                    </li>
-                                </ul>
+<!--                                <ul class="list-group" th:each="language:${languages}">-->
+<!--                                    <li class="list-group-item form-horizontal">-->
+<!--                                        <input readonly type="text" th:value="${language.getLanguage()}"/>-->
+<!--                                        <button class="deleteBtn">Delete</button>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+                                <div th:each="lang : ${languages}" th:name="languageList" th:value="${languages}">
+                                    <label th:text="${lang.getLanguage()}" th:name="language" th:value="lang"></label>
+                                    <button type="button" th:action="delete_lang"  th:value="lang" >Delete</button>
+                                </div>
+
+
+<!--                                <div th:each=", stat : ${order.items}">-->
+<!--                                    <label th:for="|order.items[${stat.index}].name|">Name</label>-->
+<!--                                    &lt;!&ndash; This construct will render field name like this: "items[0].name" &ndash;&gt;-->
+<!--                                    <input th:field="${order.items[__${stat.index}__].name}">-->
+
+<!--                                    <button type="button" name="removeItem" th:value="${stat.index}">Remove item</button>-->
+<!--                                </div>-->
+
 <!--                                <ul class="list-group" id="language list">-->
 <!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>-->
 <!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>-->
 <!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>-->
 <!--                                </ul>-->
-
                             </div>
                             <div class="profile-services">
-
                                 <p>Services</p>
                                 <div class="services-count" th:text="${userProfile.bookings.size()}"></div>
                                 <div class="services-text">completed projects</div>
-
                             </div>
                         </div>
                         <div class="vertical-line"></div>
                         <div class="right-section">
-
                             <p>Description</p>
                             <textarea type="text" th:field="*{description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
-
                         </div>
                     </div>
                 </div>

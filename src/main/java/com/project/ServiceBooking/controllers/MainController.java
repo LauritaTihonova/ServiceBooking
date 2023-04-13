@@ -3,6 +3,7 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
+import com.project.ServiceBooking.services.LanguageService;
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -50,7 +52,8 @@ public class MainController {
 
     @Autowired
     UserService userService;
-
+    @Autowired
+    LanguageService languageService;
     @GetMapping("/private")
     public String specialistPrivateProfile(Model model){
 // THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
@@ -58,8 +61,9 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
-        Set<Language> languages = user.getLanguages();
+        User user = userService.findById(8);
+        ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
+
         model.addAttribute("userProfile", user);
         model.addAttribute( "languages", languages);
 
@@ -77,9 +81,10 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
-        Set<Language> languages = user.getLanguages();
-        model.addAttribute("userProfile", user); // here I 'push' in user object into html code
+        User user = userService.findById(8);
+        ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
+
+        model.addAttribute("userProfile", user);
         model.addAttribute( "languages", languages);
 
         if(user.getRole() == Role.CLIENT){
@@ -89,10 +94,10 @@ public class MainController {
             return "Specialist_Profile_Edit.html";
         }
     }
-
     @PostMapping("/private/edit")
-    public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model){
+    public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model, @ModelAttribute ArrayList<Language> languages){
         userService.saveUser(user);
+        
         model.addAttribute("userProfile", user);
         return new ModelAndView("redirect:/private", model);
     }
