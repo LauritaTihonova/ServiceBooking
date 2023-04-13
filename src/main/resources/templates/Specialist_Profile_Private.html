@@ -275,11 +275,11 @@
           <div class="left-section">
             <div class="profile-languages">
               <p>Languages</p>
-              <ul>
-                <li class="skills" th:text="${userProfile.language}"></li>
-<!--                <li class="skills">English</li>-->
-<!--                <li class="skills">Spanish</li>-->
+
+              <ul th:each="language:${languages}">
+                <li class="skills" th:text="${language.getLanguage()}"/>
               </ul>
+
             </div>
             <div class="profile-services">
               <p>Services</p>

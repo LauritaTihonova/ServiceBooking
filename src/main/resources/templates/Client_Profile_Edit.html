@@ -305,7 +305,13 @@
                             <div class="profile-languages">
 
                                 <p>Languages</p>
-                                <input type="text" th:field="*{language}" class="form-control" placeholder="language">
+
+                                <ul class="list-group" th:each="language:${languages}">
+                                    <li class="list-group-item form-horizontal">
+                                        <input readonly type="text" class="skills" th:value="${language.getLanguage()}">
+                                        <button class="deleteBtn">Delete</button>
+                                    </li>
+                                </ul>
 <!--                                <ul class="list-group" id="language list">-->
 <!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>-->
 <!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>-->

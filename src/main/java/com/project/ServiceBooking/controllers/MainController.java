@@ -1,9 +1,6 @@
 package com.project.ServiceBooking.controllers;
 
-import com.project.ServiceBooking.data.Role;
-import com.project.ServiceBooking.data.Service;
-import com.project.ServiceBooking.data.ServicesCategory;
-import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.data.*;
 
 
 import com.project.ServiceBooking.services.ServicesCategoryService;
@@ -23,7 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -53,12 +53,16 @@ public class MainController {
 
     @GetMapping("/private")
     public String specialistPrivateProfile(Model model){
+// THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentUserName = authentication.getName();
+//        User user = userService.findByEnterEmail(currentUserName);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        User user = userService.findByEnterEmail(currentUserName);
-
+        User user = userService.findById(7);
+        Set<Language> languages = user.getLanguages();
         model.addAttribute("userProfile", user);
+        model.addAttribute( "languages", languages);
+
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Private.html";
         }
@@ -68,11 +72,16 @@ public class MainController {
     }
     @GetMapping("/private/edit") // display an edit page
     public String privateEditPage(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentUserName = authentication.getName();
-        User user = userService.findByEnterEmail(currentUserName);
+        // THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String currentUserName = authentication.getName();
+//        User user = userService.findByEnterEmail(currentUserName);
 
+        User user = userService.findById(7);
+        Set<Language> languages = user.getLanguages();
         model.addAttribute("userProfile", user); // here I 'push' in user object into html code
+        model.addAttribute( "languages", languages);
+
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Edit.html";
         }
@@ -80,7 +89,6 @@ public class MainController {
             return "Specialist_Profile_Edit.html";
         }
     }
-
 
     @PostMapping("/private/edit")
     public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model){

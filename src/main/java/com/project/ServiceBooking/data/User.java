@@ -39,8 +39,8 @@ public class User {
     @JoinColumn(name = "id_account", nullable = true)
     private Account accountIdaccount;
 
-    @Column(name = "Language", length = 45)
-    private String language;
+    @OneToMany(mappedBy = "idUsers", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Language> languages = new LinkedHashSet<>();
 
     @Column(name = "Description", length = 5000)
     private String description;
