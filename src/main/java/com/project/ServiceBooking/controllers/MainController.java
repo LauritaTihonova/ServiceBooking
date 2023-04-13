@@ -10,10 +10,6 @@ import com.project.ServiceBooking.services.ServicesService;
 import com.project.ServiceBooking.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -21,11 +17,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -55,7 +48,7 @@ public class MainController {
     @Autowired
     LanguageService languageService;
     @GetMapping("/private")
-    public String specialistPrivateProfile(Model model){
+    public String privateProfile(Model model){
 // THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String currentUserName = authentication.getName();
@@ -94,15 +87,19 @@ public class MainController {
             return "Specialist_Profile_Edit.html";
         }
     }
+
+    //this will execute after pressing save button:
     @PostMapping("/private/edit")
-    public ModelAndView privateEdited(@ModelAttribute("userProfile") User user, ModelMap model){
+    public ModelAndView privateEdited(@ModelAttribute("userProfile") User user,@ModelAttribute("languages") ArrayList<Language> languages, ModelMap model){
         userService.saveUser(user);
+        languageService.save(languages);
 
         model.addAttribute("userProfile", user);
         model.addAttribute("languages", languageService.findByUser(user.getId()));
         return new ModelAndView("redirect:/private", model);
     }
 
+    //for deleting separate languages
     @GetMapping("/private/edit/deleteLang")
     public String deleteLanguage(@RequestParam Integer languageId){
         languageService.deleteById(languageId);

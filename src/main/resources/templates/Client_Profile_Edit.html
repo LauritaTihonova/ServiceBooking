@@ -272,22 +272,17 @@
                         <p class="p-4">Account info:</p>
                         <div class="border p-3">
                             <div class="">
-<!--                                balance should not be changed by user: -->
                                 <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
-
                             </div>
                             <div class="">
-    <!--                            -->
                                 <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-3 mb-3">
-<!--                                    edit card number: -->
                                     <label>Card number</label>
                                     <input type="text" th:field="*{userProfile.accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
                                 </div>
                                 <div class="col-md-3 mb-3">
-<!--                                    -->
                                     <label>Expiration</label>
                                     <input type="text" class="form-control" placeholder="mm/yy">
                                 </div>
@@ -311,16 +306,6 @@
                                     <a th:href="@{/private/edit/deleteLang(languageId=${language.getId()})}" class="btn btn-danger ml-2">Delete</a>
                                     <br>
                                 </tr>
-
-
-
-<!--                                <div th:each=", stat : ${order.items}">-->
-<!--                                    <label th:for="|order.items[${stat.index}].name|">Name</label>-->
-<!--                                    &lt;!&ndash; This construct will render field name like this: "items[0].name" &ndash;&gt;-->
-<!--                                    <input th:field="${order.items[__${stat.index}__].name}">-->
-
-<!--                                    <button type="button" name="removeItem" th:value="${stat.index}">Remove item</button>-->
-<!--                                </div>-->
 
                             </div>
                             <div class="profile-services">

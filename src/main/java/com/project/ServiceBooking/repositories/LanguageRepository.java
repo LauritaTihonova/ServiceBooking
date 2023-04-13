@@ -1,7 +1,6 @@
 package com.project.ServiceBooking.repositories;
 
 import com.project.ServiceBooking.data.Language;
-import com.project.ServiceBooking.data.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
