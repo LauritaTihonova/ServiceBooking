@@ -6,13 +6,17 @@ import com.project.ServiceBooking.data.User;
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 import com.project.ServiceBooking.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -28,16 +32,18 @@ public class ServiceController {
         this.userService = userService;
     }
 
+    @PreAuthorize("hasAuthority('specialist:write')")
     @GetMapping("/createService")
-    public String createServiceForm(Model model ) {
-        List<ServicesCategory> servicesCategories=servicesCategoryService.getAllServices();
+    public String createServiceForm(Model model) {
+        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
         model.addAttribute("servicesCategories", servicesCategories);
         model.addAttribute("service", new Service());
         return "createService";
     }
 
+    @PreAuthorize("hasAuthority('specialist:write')")
     @PostMapping("/createService")
-    public String createService( Service service) {
+    public String createService(Service service) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserName = authentication.getName();
@@ -47,4 +53,30 @@ public class ServiceController {
         }
         return "redirect:/services";
     }
+
+
+//    @GetMapping("/updateService/{id}")
+//    private String updateServiceForm(@PathVariable("id") Integer id, Model model) {
+//        Service service = servicesService.findById(id);
+//        model.addAttribute("service", service);
+//        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
+//        model.addAttribute("servicesCategories", servicesCategories);
+//        return "updateService";
+//    }
+
+    @GetMapping("/updateService/{id}")
+    public String updateServiceForm(@PathVariable("id") Integer id, Model model) {
+        Service service = servicesService.findById(id);
+        model.addAttribute("service", service);
+        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
+        model.addAttribute("servicesCategories", servicesCategories);
+        return "updateService";
+    }
+
+    @PostMapping("/updateService")
+    public String updateService(Service service) {
+        servicesService.saveService(service);
+        return "redirect:/services";
+    }
+
 }

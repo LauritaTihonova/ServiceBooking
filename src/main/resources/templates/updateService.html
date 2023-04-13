@@ -8,10 +8,16 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Service Form</h1>
+    <h1 class="text-center mb-4">Update Service Form</h1>
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-5">
-            <form th:action="@{/createService}" th:object="${service}" method="post">
+            <form th:action="@{/updateService}" th:object="${service}" method="post">
+                <td>
+                    <input readonly type="hidden" th:field="*{id}" id="id_services" placeholder="id_services">
+                </td>
+                <td>
+                    <input readonly type="hidden" th:field="*{usersIdUsers}" id="usersIdUsers" placeholder="usersIdUsers">
+                </td>
                 <div class="form-floating mb-3">
                     <label for="floatingInputUsername">Name</label>
                     <input type="text" class="form-control" th:field="*{name}" id="floatingInputUsername" placeholder="Name" required autofocus>
@@ -32,11 +38,12 @@
                         <option value="">Select option</option>
                         <option th:each="servicesCategory : ${servicesCategories}" th:value="${servicesCategory.id}"
                                 th:text="${servicesCategory.category +','+servicesCategory.subCategory}"></option>
+
                     </select>
                 </div>
 
                 <div class="d-grid mb-2">
-                    <button class="btn btn-primary d-block mx-auto fw-bold text-uppercase" type="submit" style="background-color: #8A2BE2;">Create</button>
+                    <button class="btn btn-primary d-block mx-auto fw-bold text-uppercase" type="submit" style="background-color: #8A2BE2;">Update</button>
 
                 </div>
             </form>
