@@ -10,41 +10,107 @@
     <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <style>
-                     a {
-        color: white;
-        text-decoration:none;
+        a {
+            color: white;
+            text-decoration:none;
         }
 
         .header {
-        float: right;
-        padding: 10px 20px;
-        font-size: 20px;
-        color: white;
-        background-color: #955aed;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 15px 10px 0px 10px;
-        transition: background-color 0.3s ease-in-out;
+            float: right;
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            background-color: #955aed;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 15px 10px 0px 10px;
+            transition: background-color 0.3s ease-in-out;
         }
-               body {
-        background-color: #f8f9fa;
-      }
-      th, td {
-        border: 1px solid #955aed;
-        border-radius: 5px;
-        padding: 10px;
-        margin: 200px 400px 200px 400px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease-in-out;
-        background-color: white;
-        text-align: center;
-       }
 
-      table {
-      border-collapse: collapse;
-      margin: 40px 200px;
-      }
+        body {
+            background-color: #f8f9fa;
+        }
+
+        th, td {
+            border: 1px solid #955aed;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            background-color: white;
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 40px auto;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px 0;
+        }
+
+        .filter {
+            float: left;
+            margin-right: 20px;
+            width: 200px;
+        }
+
+        .filter select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .filter-container {
+            border: 2px solid #955aed;
+            border-radius: 25px;
+            height: auto;
+            flex-direction: column;
+            display: flex;
+            float: left;
+            margin: 50px;
+            padding: 50px;
+        }
+
+        input[type=checkbox] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #955aed;
+          border-radius: 5px;
+          background-color: #f8f9fa;
+          transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+          cursor: pointer;
+          margin-right: 10px;
+        }
+
+        input[type=checkbox]:checked {
+          background-color: #955aed;
+        }
+
+        input[type=checkbox]:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(149, 90, 237, 0.2);
+        }
+
+        .filter input[type="submit"] {
+            width: 100%;
+            background-color: #955aed;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .filter input[type="submit"]:hover {
+            background-color: #8245c3;
+        }
     </style>
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
@@ -58,6 +124,44 @@
 </head>
 <body>
 
+<div class="filter-container">
+    <div class="filter">
+        <label for="specialist-filter">Specialist rating:</label>
+        <select id="specialist-filter">
+            <option value="">All</option>
+            <option value="service1">4.5-5 stars</option>
+            <option value="service2">4-4.5 stars</option>
+            <option value="service3">3-4 starts</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="price-filter">Price range:</label>
+        <select id="price-filter">
+            <option value="">All</option>
+            <option value="0-10">0-50 EUR</option>
+            <option value="10-20">50-200 EUR</option>
+            <option value="20-30">200-500 EUR</option>
+            <option value="20-30">+500 EUR</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="language-filter">Specialist language:</label>
+        <select id="language-filter">
+            <option value="">All</option>
+            <option value="0-10">English</option>
+            <option value="10-20">Lithuanian</option>
+            <option value="20-30">Latvian</option>
+            <option value="20-30">Russian</option>
+        </select>
+    </div>
+    <label>
+        <input type="checkbox" name="option1" value="value1"> Has more then 10 finished jobs
+    </label>
+    <div class="filter">
+        <input type="submit" value="Filter">
+    </div>
+</div>
+
 <table>
     <tr>
         <th>Service name</th>
@@ -65,7 +169,7 @@
         <th>Price, EUR</th>
     </tr>
     <tr>
-<!--    <tr th:each="service : ${serviceDescription}">-->
+        <tr th:each="service : ${serviceDescription}">
         <td th:text="${service.name}"></td>
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>

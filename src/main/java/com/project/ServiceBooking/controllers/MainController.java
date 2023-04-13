@@ -4,6 +4,8 @@ import com.project.ServiceBooking.data.Role;
 import com.project.ServiceBooking.data.Service;
 import com.project.ServiceBooking.data.ServicesCategory;
 import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.data.Subcategory;
+
 
 
 import com.project.ServiceBooking.services.ServicesCategoryService;
@@ -132,17 +134,6 @@ public class MainController {
 
     @RequestMapping(path = "contact-us/submit")
     public String submitForm() {return "submit.html";}
-    @Autowired
-    ServicesCategoryService servicesCategoryService;
-
-    @GetMapping("/services")
-    public String listAllServices(Model model) {
-        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
-        model.addAttribute("servicesCategories", servicesCategories);
-        return "ServiceCategoryList.html";
-    }
-
-
 
 
     @Autowired
@@ -153,5 +144,34 @@ public class MainController {
         model.addAttribute("service", service);
         return "ServiceDescription.html";
     }
+
+
+
+
+
+
+    @Autowired
+    Subcategory subcategoryService;
+
+    @GetMapping("/services")
+    public String listServices(Model model) {
+        List<Service> services = servicesService.findAllService();
+        List<Subcategory> subcategories = subcategoryService.getAllSubcategories();
+        model.addAttribute("services", services);
+        model.addAttribute("subcategories", subcategories);
+        return "Services.html";
+    }
+
+    @GetMapping("/services/subcategory/{id}")
+    public String listServicesBySubcategory(@PathVariable("id") Integer id, Model model) {
+        Subcategory subcategory = subcategoryService.findById(id);
+        List<Service> services = servicesService.findBySubcategory(subcategory);
+        List<Subcategory> subcategories = subcategoryService.getAllSubcategories();
+        model.addAttribute("selectedSubcategory", subcategory);
+        model.addAttribute("services", services);
+        model.addAttribute("subcategories", subcategories);
+        return "ServicesBySubcategory.html";
+    }
+
 }
 
