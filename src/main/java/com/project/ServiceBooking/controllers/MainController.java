@@ -61,7 +61,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         model.addAttribute("userProfile", user);
@@ -81,7 +81,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         model.addAttribute("userProfile", user);
@@ -97,8 +97,10 @@ public class MainController {
     @PostMapping("/private/edit")
     public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model, @ModelAttribute ArrayList<Language> languages){
         userService.saveUser(user);
-        
+        languageService.saveLanguages(languages);
+
         model.addAttribute("userProfile", user);
+        model.addAttribute("languages", languages);
         return new ModelAndView("redirect:/private", model);
     }
 

@@ -21,4 +21,8 @@ public class LanguageService {
     public List<Language> findByUser(Integer userId){
         return languageRepository.findByUser(userId);
     }
+
+    public List<Language> saveLanguages(List<Language> languages){
+        return languageRepository.saveAll(languages);
+    }
 }
