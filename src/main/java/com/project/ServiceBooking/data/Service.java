@@ -13,6 +13,7 @@ import java.util.Set;
 @Table(name = "services")
 public class Service {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_services", nullable = false)
     private Integer id;
 
