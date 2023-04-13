@@ -84,8 +84,10 @@ public class MainController {
         User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
+        LanguagesWrapperObject languageEditList = new LanguagesWrapperObject(languages);
+
         model.addAttribute("userProfile", user);
-        model.addAttribute( "languages", languages);
+        model.addAttribute( "languages", languageEditList);
 
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Edit.html";
@@ -95,12 +97,12 @@ public class MainController {
         }
     }
     @PostMapping("/private/edit")
-    public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model, @ModelAttribute ArrayList<Language> languages){
+    public ModelAndView privateEdited(@ModelAttribute("userProfile") User user, ModelMap model, @ModelAttribute("languages") LanguagesWrapperObject languages){
         userService.saveUser(user);
-        languageService.saveLanguages(languages);
+        languageService.saveLanguages(languages.getLanguages());
 
         model.addAttribute("userProfile", user);
-        model.addAttribute("languages", languages);
+        model.addAttribute("languages", languageService.findAll());
         return new ModelAndView("redirect:/private", model);
     }
 

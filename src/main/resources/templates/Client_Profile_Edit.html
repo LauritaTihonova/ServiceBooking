@@ -229,7 +229,7 @@
     </nav>
 </head>
 <body>
-<form action="#" th:action="@{/private/edit}" th:object="${userProfile}" method="post">
+<form action="#" th:action="@{/private/edit}" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
@@ -241,23 +241,23 @@
                         <div>
                             <div class="profile-name">
 <!--                                some other important info to be passed further:-->
-                                <input type="hidden" th:field="*{id}">
-                                <input type="hidden" th:field="*{email}">
-                                <input type="hidden" th:field="*{password}">
-                                <input type="hidden" th:field="*{status}">
-                                <input type="hidden" th:field="*{picture}">
-                                <input type="hidden" th:field="*{accountIdaccount}">
-                                <input type="hidden" th:field="*{role}">
-                                <input type="hidden" th:field="*{sellerIdSeller}">
-                                <input type="hidden" th:field="*{payments}">
-                                <input type="hidden" th:field="*{services}">
-                                <input type="hidden" th:field="*{reviews}">
-                                <input type="hidden" th:field="*{bookings}">
-                                <input type="hidden" th:field="*{accountIdaccount.money}">
+                                <input type="hidden" th:field="*{userProfile.id}">
+                                <input type="hidden" th:field="*{userProfile.email}">
+                                <input type="hidden" th:field="*{userProfile.password}">
+                                <input type="hidden" th:field="*{userProfile.status}">
+                                <input type="hidden" th:field="*{userProfile.picture}">
+                                <input type="hidden" th:field="*{userProfile.accountIdaccount}">
+                                <input type="hidden" th:field="*{userProfile.role}">
+                                <input type="hidden" th:field="*{userProfile.sellerIdSeller}">
+                                <input type="hidden" th:field="*{userProfile.payments}">
+                                <input type="hidden" th:field="*{userProfile.services}">
+                                <input type="hidden" th:field="*{userProfile.reviews}">
+                                <input type="hidden" th:field="*{userProfile.bookings}">
+                                <input type="hidden" th:field="*{userProfile.accountIdaccount.money}">
 
                                 <!--                                Edit name and surname: -->
-                                <input type="text" th:field="*{name}" placeholder="name" class="form-control">
-                                <input type="text" th:field="*{surname}" placeholder="surname" class="form-control">
+                                <input type="text" th:field="*{userProfile.name}" placeholder="name" class="form-control">
+                                <input type="text" th:field="*{userProfile.surname}" placeholder="surname" class="form-control">
                             </div>
                         </div>
 
@@ -284,7 +284,7 @@
                                 <div class="col-md-3 mb-3">
 <!--                                    edit card number: -->
                                     <label>Card number</label>
-                                    <input type="text" th:field="*{accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
+                                    <input type="text" th:field="*{userProfile.accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
                                 </div>
                                 <div class="col-md-3 mb-3">
 <!--                                    -->
@@ -306,11 +306,9 @@
 
                                 <p>Languages</p>
 
-
-                                <div th:each="lang : ${languages}" th:name="languageList" th:value="${languages}">
-                                    <label th:text="${lang.getLanguage()}" th:name="language" th:value="lang"></label>
-                                    <button type="button" th:action="delete_lang"  th:value="lang" >Delete</button>
-                                </div>
+                                <tr th:each="lang, itemStat : *{languages}">
+                                    <td><input th:field="*{languages[__${itemStat.index}__].language}" /></td>
+                                </tr>
 
 
 <!--                                <div th:each=", stat : ${order.items}">-->
@@ -321,11 +319,6 @@
 <!--                                    <button type="button" name="removeItem" th:value="${stat.index}">Remove item</button>-->
 <!--                                </div>-->
 
-<!--                                <ul class="list-group" id="language list">-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>-->
-<!--                                </ul>-->
                             </div>
                             <div class="profile-services">
                                 <p>Services</p>
@@ -336,7 +329,7 @@
                         <div class="vertical-line"></div>
                         <div class="right-section">
                             <p>Description</p>
-                            <textarea type="text" th:field="*{description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
+                            <textarea type="text" th:field="*{userProfile.description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
                         </div>
                     </div>
                 </div>
