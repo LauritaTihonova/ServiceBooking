@@ -301,6 +301,13 @@
                             <div class="profile-languages">
 
                                 <p>Languages</p>
+                                <tr th:each="lang, itemStat : *{languageList}">
+                                    <td>
+                                        <input th:field="*{languageList[__${itemStat.index}__].language}" />
+                                        <input type="hidden" th:field="*{languageList[__${itemStat.index}__].id}">
+                                        <input type="hidden" th:field="*{languageList[__${itemStat.index}__].idUsers}">
+                                    </td>
+                                </tr>
 <!--                                <tr th:each="lang:${wrapper.languageList}">-->
 <!--                                    <td th:text="*{lang.getLanguage()}" /></p>-->
 <!--                                    <a th:href="@{/private/edit/deleteLang(languageId=${lang.getId()})}" class="btn btn-danger ml-2">Delete</a>-->

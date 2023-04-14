@@ -11,13 +11,13 @@ import lombok.Setter;
 public class Language {
     @Id
     @Column(name = "idlanguage", nullable = false)
-    private Integer id;
+    public Integer id;
 
     @Column(name = "language")
-    private String language;
+    public String language;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id_users")
-    private User idUsers;
+    public User idUsers;
 
 }
