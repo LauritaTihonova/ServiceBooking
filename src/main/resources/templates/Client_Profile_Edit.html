@@ -302,7 +302,7 @@
 
                                 <p>Languages</p>
                                 <tr th:each="lang:${languages}">
-                                    <td th:text="*{lang.getLanguage()}" /></td>
+                                    <td th:text="*{lang.getLanguage()}" /></p>
                                     <a th:href="@{/private/edit/deleteLang(languageId=${lang.getId()})}" class="btn btn-danger ml-2">Delete</a>
                                     <br>
                                 </tr>
