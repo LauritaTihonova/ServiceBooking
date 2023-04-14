@@ -57,8 +57,11 @@ public class MainController {
         User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
-        model.addAttribute("userProfile", user);
-        model.addAttribute( "languages", languages);
+        PrivateEditForm editForm = new PrivateEditForm();
+        editForm.setUser(user);
+        editForm.setLanguageList(languages);
+
+        model.addAttribute("wrapper", editForm);
 
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Private.html";
@@ -77,8 +80,11 @@ public class MainController {
         User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
-        model.addAttribute("userProfile", user);
-        model.addAttribute( "languages", languages);
+        PrivateEditForm editForm = new PrivateEditForm();
+        editForm.setUser(user);
+        editForm.setLanguageList(languages);
+
+        model.addAttribute("wrapper", editForm);
 
         if(user.getRole() == Role.CLIENT){
             return "Client_Profile_Edit.html";
@@ -90,12 +96,12 @@ public class MainController {
 
     //this will execute after pressing save button:
     @PostMapping("/private/edit")
-    public ModelAndView privateEdited(@ModelAttribute("userProfile") User user,@ModelAttribute("languages") ArrayList<Language> languages, ModelMap model){
-        userService.saveUser(user);
-        languageService.save(languages);
+    public ModelAndView privateEdited(@ModelAttribute("userProfile") PrivateEditForm editForm, ModelMap model){
+        userService.saveUser(editForm.user);
+        languageService.save((ArrayList<Language>)editForm.languageList);
 
-        model.addAttribute("userProfile", user);
-        model.addAttribute("languages", languageService.findByUser(user.getId()));
+        model.addAttribute("wrapper", editForm);
+
         return new ModelAndView("redirect:/private", model);
     }
 
