@@ -45,6 +45,8 @@
       border-collapse: collapse;
       margin: 40px 200px;
       }
+
+
     </style>
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
@@ -65,11 +67,67 @@
         <th>Price, EUR</th>
     </tr>
     <tr>
-<!--    <tr th:each="service : ${serviceDescription}">-->
+        <!--    <tr th:each="service : ${serviceDescription}">-->
         <td th:text="${service.name}"></td>
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>
+        <td th:text="${user.name}"></td>
+        <td th:text="${user.email}"></td>
     </tr>
 </table>
+
+<table>
+    <tr>
+        <td>
+            <form th:action="@{/createReview}" method="post">
+
+                <input type="hidden"
+                       th:value="${service.id}"
+                       name="id">
+
+
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+
+                <div class="mb-5">
+                    <label for="TextArea" class="form-label">Textarea</label>
+                    <textarea class="form-control" id="TextArea" name="TextArea" rows="3"></textarea>
+                </div>
+
+                <button type="submit">
+                    Send review
+                </button>
+            </form>
+        </td>
+    </tr>
+</table>
+
+<table  th:each="review : ${reviews}">
+    <div >
+        <tr>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>User Name </th>
+            <th>User Surname</th>
+        </tr>
+        <tr>
+            <div class="col">
+                <td th:text="${review.rating}"></td>
+                <td th:text="${review.comment}"></td>
+                <td th:text="${review.usersIdUsers.name}"></td>
+                <td th:text="${review.usersIdUsers.surname}"></td>
+            </div>
+        </tr>
+    </div>
+</table>
+
+
+
 </body>
 </html>

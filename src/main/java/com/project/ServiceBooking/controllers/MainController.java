@@ -1,11 +1,9 @@
 package com.project.ServiceBooking.controllers;
 
-import com.project.ServiceBooking.data.Role;
-import com.project.ServiceBooking.data.Service;
-import com.project.ServiceBooking.data.ServicesCategory;
-import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.data.*;
 
 
+import com.project.ServiceBooking.services.ReviewService;
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
@@ -147,10 +145,17 @@ public class MainController {
 
     @Autowired
     ServicesService servicesService;
+    @Autowired
+    ReviewService reviewService;
+
     @RequestMapping(path = "/services/description/{id}")
     public String description (@PathVariable("id") Integer id, Model model) {
         Service service = servicesService.findById(id);
         model.addAttribute("service", service);
+        User user = userService.findById(service.getUsersIdUsers().getId());
+        model.addAttribute("user", user);
+        List<Review> reviews = reviewService.findByidServices(id);
+        model.addAttribute("reviews", reviews);
         return "ServiceDescription.html";
     }
 }
