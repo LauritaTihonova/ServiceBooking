@@ -42,4 +42,6 @@ public class Service {
     @OneToMany(mappedBy = "idServices")
     private Set<Booking> bookings = new LinkedHashSet<>();
 
+    @Column(name = "sub_category", length = 45)
+    private String subCategory;
 }

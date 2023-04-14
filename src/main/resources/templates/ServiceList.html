@@ -42,9 +42,17 @@
        }
 
       table {
-      border-collapse: collapse;
-      margin: 40px 200px;
+          border-collapse: collapse;
+          margin: 40px 200px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 100px;
       }
+      .main-text{
+        text-align: center;
+        color: #955aed;
+        padding-top: 80px;
+        }
     </style>
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
@@ -58,18 +66,24 @@
 </head>
 <body>
 
+<h1 class="main-text">Service List By Category</h1>
+
 <table>
+    <thead>
     <tr>
         <th>Service name</th>
         <th>Description</th>
         <th>Price, EUR</th>
     </tr>
-    <tr>
-<!--    <tr th:each="service : ${serviceDescription}">-->
+    </thead>
+    <tbody>
+    <tr th:each="service : ${services}">
         <td th:text="${service.name}"></td>
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>
     </tr>
+    </tbody>
 </table>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import com.project.ServiceBooking.data.ServicesCategory;
 import com.project.ServiceBooking.data.User;
 
 
+import com.project.ServiceBooking.repositories.UserRepository;
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
@@ -20,15 +21,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
-import java.util.ArrayList;
-
 
 
 @Controller
@@ -73,6 +72,11 @@ public class MainController {
             return "Specialist_Profile_Edit.html";
         }
     }
+
+    @Autowired
+    private UserRepository userRepository;
+
+
 
 //
 //    @GetMapping("/clientPrivate")
@@ -132,26 +136,37 @@ public class MainController {
 
     @RequestMapping(path = "contact-us/submit")
     public String submitForm() {return "submit.html";}
+
+
+
     @Autowired
     ServicesCategoryService servicesCategoryService;
-
     @GetMapping("/services")
-    public String listAllServices(Model model) {
-        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
-        model.addAttribute("servicesCategories", servicesCategories);
+    public String getServiceCategories(Model model) {
+        List<ServicesCategory> serviceCategories = servicesCategoryService.getAllServices();
+
+        Map<String, Set<String>> categoriesMap = new HashMap<>();
+        for (ServicesCategory category : serviceCategories) {
+            String categoryName = category.getCategory();
+            String subCategory = category.getSubCategory();
+
+            if (!categoriesMap.containsKey(categoryName)) {
+                categoriesMap.put(categoryName, new HashSet<>());
+            }
+            categoriesMap.get(categoryName).add(subCategory);
+        }
+
+        model.addAttribute("categoriesMap", categoriesMap);
         return "ServiceCategoryList.html";
     }
 
-
-
-
     @Autowired
     ServicesService servicesService;
-    @RequestMapping(path = "/services/description/{id}")
-    public String description (@PathVariable("id") Integer id, Model model) {
-        Service service = servicesService.findById(id);
-        model.addAttribute("service", service);
-        return "ServiceDescription.html";
+    @RequestMapping(path = "/services/services")
+    public String serviceList(@RequestParam("subCategory") String subCategory, Model model) {
+        List<Service> services = servicesService.findBySubCategory(subCategory);
+        model.addAttribute("services", services);
+        return "ServiceList.html";
     }
 }
 
