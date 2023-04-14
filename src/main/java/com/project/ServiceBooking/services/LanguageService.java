@@ -1,6 +1,7 @@
 package com.project.ServiceBooking.services;
 
 import com.project.ServiceBooking.data.Language;
+import com.project.ServiceBooking.data.User;
 import com.project.ServiceBooking.repositories.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,6 @@ public class LanguageService {
     public void save(ArrayList<Language> languages){
         languageRepository.saveAll(languages);
     }
+
+    public void saveOne(Language language){ languageRepository.save(language);}
 }

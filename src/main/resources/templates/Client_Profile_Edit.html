@@ -306,10 +306,11 @@
                                         <input th:field="*{languageList[__${itemStat.index}__].language}" />
                                         <input type="hidden" th:field="*{languageList[__${itemStat.index}__].id}">
                                         <input type="hidden" th:field="*{languageList[__${itemStat.index}__].idUsers}">
-                                        <a th:href="@{/private/edit/deleteLang(languageId=${languageList[__${itemStat.index}__].id})}" class="btn btn-danger ml-2">Delete</a>
+                                        <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
                                     </td>
                                 </tr>
-
+                                <input type="text" placeholder="language" class="form-control" th:value="*{newLanguage}">
+                                <a th:href="@{/private/edit/addLang(inputLanguage=${newLanguage}, userId=${wrapper.user.id})}" class="btn ml-2">Add</a>
 
                             </div>
                             <div class="profile-services">

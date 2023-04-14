@@ -54,7 +54,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
+        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -77,7 +77,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
+        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -111,6 +111,16 @@ public class MainController {
         languageService.deleteById(languageId);
         return "redirect:/private/edit";
     }
+
+    @GetMapping("/private/edit/addLang")
+    public String addLanguage(@RequestParam String inputLanguage, @RequestParam Integer userId){
+        Language languageToAdd = new Language();
+        languageToAdd.setLanguage(inputLanguage);
+        languageToAdd.setIdUsers(userService.findById(userId));
+        languageService.saveOne(languageToAdd);
+        return "redirect:/private/edit";
+    }
+
 
     @RequestMapping(path = "/payment")
     public String payment() {

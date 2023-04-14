@@ -11,5 +11,5 @@ public class PrivateEditForm {
     public User user;
     public List<Language> languageList;
 
-
+    public String newLanguage;
 }

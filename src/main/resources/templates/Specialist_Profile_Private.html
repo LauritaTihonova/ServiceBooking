@@ -235,11 +235,11 @@
       <div class="profile-container">
         <div class="profile">
           <div class="profile-image">
-            <img th:src="${userProfile.picture}" alt="Profile Picture">
+            <img th:src="${wrapper.user.picture}" alt="Profile Picture">
           </div>
           <div>
             <div class="profile-name">
-              <td th:text="${userProfile.getName()} + ' ' + ${userProfile.getSurname()}"></td>
+              <td th:text="${wrapper.user.name} + ' ' + ${wrapper.user.surname}"></td>
             </div>
               <div class="info">
                 <p style="text-align: left; padding-left: 0px">Ratings</p>
@@ -263,10 +263,10 @@
           <p class="p-4">Account info:</p>
           <div class="title border">
             <div>
-              <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
+              <p th:text="'Balance: ' + ${wrapper.user.accountIdaccount.money} + ' EUR'"></p>
             </div>
             <div>
-              <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
+              <p th:text="'Card added: **** **** **** **' + ${#strings.substring(wrapper.user.accountIdaccount.cardNumber, 14, 16)}"></p>
             </div>
           </div>
         </div>
@@ -276,23 +276,23 @@
             <div class="profile-languages">
               <p>Languages</p>
 
-              <ul th:each="language:${languages}">
+              <ul th:each="language:${wrapper.languageList}">
                 <li class="skills" th:text="${language.getLanguage()}"/>
               </ul>
 
             </div>
             <div class="profile-services">
               <p>Services</p>
-              <div class="services-count" th:text="${userProfile.services.size()}"></div>
+              <div class="services-count" th:text="${wrapper.user.services.size()}"></div>
               <div class="services-text">completed projects</div>
               <p>Skills</p>
               <ul>
-                <li class="skills" th:text="${userProfile.sellerIdSeller.skills}"></li>
+                <li class="skills" th:text="${wrapper.user.sellerIdSeller.skills}"></li>
 <!--                <li cass="skills">Front-end Development</li>-->
               </ul>
               <p>Education</p>
               <ul>
-                <li class="skills" th:text="${userProfile.sellerIdSeller.education}"></li>
+                <li class="skills" th:text="${wrapper.user.sellerIdSeller.education}"></li>
 <!--                <li class="skills">Code Academy</li>-->
               </ul>
             </div>
@@ -300,7 +300,7 @@
           <div class="vertical-line"></div>
           <div class="right-section">
             <p>Description</p>
-            <div class="profile-description" th:text="${userProfile.description}"/>
+            <div class="profile-description" th:text="${wrapper.user.description}"/>
           </div>
         </div>
       </div>
