@@ -17,13 +17,15 @@ public class ReviewService {
         this.reviewRepository = reviewRepository;
     }
 
-    public Review findById(Integer id){
+    public Review findById(Integer id) {
         return reviewRepository.findById(id).orElse(null);
     }
-    public List<Review> findAll(){
+
+    public List<Review> findAll() {
         return reviewRepository.findAll();
     }
-    public Review saveReview(Review review){
+
+    public Review saveReview(Review review) {
         return reviewRepository.save(review);
     }
 
@@ -31,7 +33,18 @@ public class ReviewService {
         return reviewRepository.findByidServices(idServices);
     }
 
-    public void deleteById(Integer id){
+    public void deleteById(Integer id) {
         reviewRepository.deleteById(id);
+    }
+
+    public float findAvgRating(Integer id) {
+        List<Review> reviews = findByidServices(id);
+        float sum = 0;
+        for (Review review : reviews) {
+            sum += review.getRating();
+        }
+        float avg = sum / reviews.size();
+        String formattedAvg = String.format("%.2f", avg);
+        return Float.parseFloat(formattedAvg);
     }
 }

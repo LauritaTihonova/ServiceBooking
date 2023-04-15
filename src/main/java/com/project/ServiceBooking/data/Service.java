@@ -34,6 +34,12 @@ public class Service {
     @Column(name = "name", length = 45)
     private String name;
 
+    @Column(name = "avgrating")
+    private Float avgrating;
+
+    @Column(name = "countreview")
+    private Integer countreview;
+
     @OneToMany(mappedBy = "servicesIdServices")
     private Set<Payment> payments = new LinkedHashSet<>();
 

@@ -61,6 +61,9 @@ public class ReviewController {
             review.setUsersIdUsers(user);
             review.setIdServices(service);
             reviewService.saveReview(review);
+            service.setCountreview(reviewService.findByidServices(id).size());
+            service.setAvgrating(reviewService.findAvgRating(id));
+            servicesService.saveService(service);
         }
         return "redirect:"+previousUrl;
     }
