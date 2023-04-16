@@ -14,7 +14,6 @@
         color: white;
         text-decoration:none;
         }
-
         .header {
         float: right;
         padding: 10px 20px;
@@ -27,10 +26,11 @@
         margin: 15px 10px 0px 10px;
         transition: background-color 0.3s ease-in-out;
         }
+
                body {
         background-color: #f8f9fa;
-      }
-      th, td {
+        }
+        th, td {
         border: 1px solid #955aed;
         border-radius: 5px;
         padding: 10px;
@@ -39,15 +39,44 @@
         transition: transform 0.3s ease-in-out;
         background-color: white;
         text-align: center;
-       }
+        }
+        table {
+        border-collapse: collapse;
+        margin: 40px 200px;
+        }
+        .seeButton{
+        padding: 10px;
+        font-size: 15px;
+        color: white;
+        background-color: #955aed;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 15px 10px 0px 10px;
+        transition: background-color 0.3s ease-in-out;
+        }
 
-      table {
-      border-collapse: collapse;
-      margin: 40px 200px;
+        footer{
+        padding: 30px;
+        background-color:#955aed;
+        height: 250px;
+        position:fixed;
+        bottom:0;
+        }
+      .column{
+      color: white;
+      text–align: center;
+      float: left;
+      width: 33.33%;
+      }
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
       }
     </style>
     <nav>
-        <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
+        <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
         <button class="header"><a href="/registration">Register</a></button>
         <button class="header"><a href="/profile">My profile</a></button>
         <button class="header"><a href="/contact-us">Contact Us</a></button>
@@ -63,6 +92,7 @@
         <th>Service name</th>
         <th>Description</th>
         <th>Price, EUR</th>
+
     </tr>
     <tr>
 <!--    <tr th:each="service : ${serviceDescription}">-->
@@ -70,6 +100,23 @@
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>
     </tr>
+
 </table>
+
+<footer>
+    <div class="row">
+        <div class="column"> <h5 style="font-weight: bold"> <a href="/contact-us">CONTACT US</a></h5>
+            <address>
+                Our office location: 301 West St, 2nd Floor, Boston<br>
+                Phone number: 617-509-6995<br>
+                Email: info@servicebooking.com
+            </address>
+            <img src="https://i.ibb.co/dJtdq3F/social-icons-white.png" alt="social-icons" style="width:30%"></div>
+        <div class="column"><h5 style="font-weight:bold; text-align:center"><a href="/services">OUR SERVICES</a></h5></div>
+        <div class="column"><h5 style="font-weight:bold; text-align:right"><a href="/about-us">ABOUT US</a></h5></div>
+    </div>
+    <h6 style="color:white; text-align:center; font-weight: normal;">© ServiceBooking 2023. All Rights Reserved</h6>
+</footer>
+
 </body>
 </html>

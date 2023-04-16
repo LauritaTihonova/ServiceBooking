@@ -53,9 +53,32 @@
         color: #955aed;
         padding-top: 80px;
         }
+
+<!--         .pageContent{
+         margin-bottom: 1000px;
+         }-->
+
+        footer{
+        padding: 30px;
+        background-color:#955aed;
+        height: 250px;
+        position:fixed;
+        bottom:0;
+        }
+      .column{
+      color: white;
+      text–align: center;
+      float: left;
+      width: 33.33%;
+      }
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
     </style>
     <nav>
-        <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
+        <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
         <button class="header"><a href="/registration">Register</a></button>
         <button class="header"><a href="/private">My profile</a></button>
         <button class="header"><a href="/contact-us">Contact Us</a></button>
@@ -66,6 +89,23 @@
 </head>
 <body>
 <h1 class="main-text">About Us</h1>
+
+
+
+<footer>
+    <div class="row">
+        <div class="column"> <h5 style="font-weight: bold"> <a href="/contact-us">CONTACT US</a></h5>
+            <address>
+                Our office location: 301 West St, 2nd Floor, Boston<br>
+                Phone number: 617-509-6995<br>
+                Email: info@servicebooking.com
+            </address>
+            <img src="https://i.ibb.co/dJtdq3F/social-icons-white.png" alt="social-icons" style="width:30%"></div>
+        <div class="column"><h5 style="font-weight:bold; text-align:center"><a href="/services">OUR SERVICES</a></h5></div>
+        <div class="column"><h5 style="font-weight:bold; text-align:right"><a href="/about-us">ABOUT US</a></h5></div>
+    </div>
+    <h6 style="color:white; text-align:center; font-weight: normal;">© ServiceBooking 2023. All Rights Reserved</h6>
+</footer>
 
 
 </body>
