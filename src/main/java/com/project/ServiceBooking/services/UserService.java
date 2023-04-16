@@ -11,6 +11,7 @@ import com.project.ServiceBooking.data.Status;
 
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -60,4 +61,8 @@ public class UserService {
         return saveUser(user);
     }
 
+    public User getUserById(Integer userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.orElse(null);
+    }
 }

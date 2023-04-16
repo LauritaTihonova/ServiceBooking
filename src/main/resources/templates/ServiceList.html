@@ -24,7 +24,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin: 15px 10px 0px 10px;
+        margin: 15px 10px 15px 10px;
         transition: background-color 0.3s ease-in-out;
         }
                body {
@@ -65,15 +65,13 @@
     </nav>
 </head>
 <body>
-
-<h1 class="main-text">Service List By Category</h1>
-
 <table>
     <thead>
     <tr>
         <th>Service name</th>
         <th>Description</th>
         <th>Price, EUR</th>
+        <th>Specialist Profile</th>
     </tr>
     </thead>
     <tbody>
@@ -81,9 +79,11 @@
         <td th:text="${service.name}"></td>
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>
+        <td>
+            <Button class="header" th:href="@{'/specialist/' + ${service.usersIdUsers.id}}">View Profile</Button>
+        </td>
     </tr>
     </tbody>
 </table>
-
 </body>
 </html>

@@ -17,7 +17,7 @@ public class Service {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_services_category")
+    @JoinColumn(name = "id_services_category", insertable = false, updatable = false)
     private ServicesCategory idServicesCategory;
 
     @Column(name = "description", length = 45)
@@ -59,4 +59,8 @@ public class Service {
     public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
     }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_services_category", referencedColumnName = "id_services_category", nullable = false)
+    private ServicesCategory servicesCategory;
 }

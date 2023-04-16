@@ -44,7 +44,7 @@ public class MainController {
 
     @RequestMapping(path = "/profile")
     public String userProfile() {
-        return "User_Profile.html";
+        return "Specialist_Profile.html";
     }
 
     @Autowired
@@ -168,5 +168,13 @@ public class MainController {
         model.addAttribute("services", services);
         return "ServiceList.html";
     }
+
+    @GetMapping("/specialist/{userId}")
+    public String getSpecialistProfile(@PathVariable Integer userId, Model model) {
+        User user = userService.getUserById(userId);
+        model.addAttribute("user", user);
+        return "Specialist_Profile.html";
+    }
+
 }
 
