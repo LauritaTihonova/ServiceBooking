@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ServicesService {
@@ -30,5 +31,17 @@ public class ServicesService {
     public List<com.project.ServiceBooking.data.Service> findBySubCategory(String subCategory) {
         return serviceRepository.findBySubCategory(subCategory);
     }
+
+    public com.project.ServiceBooking.data.Service getServiceById(int id) {
+        Optional<com.project.ServiceBooking.data.Service> serviceData = serviceRepository.findById(id);
+        if (serviceData.isPresent()) {
+            return serviceData.get();
+        } else {
+            throw new RuntimeException("Service not found with id: " + id);
+        }
+    }
+
+
+
 }
 

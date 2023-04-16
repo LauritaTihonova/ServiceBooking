@@ -29,4 +29,8 @@ public class Booking {
     @JoinColumn(name = "id_services")
     private Service idServices;
 
+    public void setService(Service service) {
+        this.idServices = service;
+    }
+
 }

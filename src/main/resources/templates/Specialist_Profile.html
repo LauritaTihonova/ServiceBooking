@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
   <style>
@@ -204,18 +206,7 @@
         text-decoration:none;
         }
 
-        .header {
-        float: right;
-        padding: 10px 20px;
-        font-size: 20px;
-        color: white;
-        background-color: #955aed;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin: 15px 10px 0px 10px;
-        transition: background-color 0.3s ease-in-out;
-        }
+
         .main-text{
         text-align: center;
         color: #955aed;
@@ -223,15 +214,6 @@
         }
 
     </style>
-  <nav>
-    <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
-    <button class="header"><a href="/registration">Register</a></button>
-    <button class="header"><a href="/private">My profile</a></button>
-    <button class="header"><a href="/contact-us">Contact Us</a></button>
-    <button class="header"><a href="/about-us">About Us</a></button>
-    <button class="header"><a href="/services">Our Services</a></button>
-    <button class="header"><a href="/home">Home</a></button>
-  </nav>
 </head>
 <body>
 <h1 class="main-text">Specialist Profile</h1>
@@ -240,63 +222,32 @@
     <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
       <div class="profile-container">
         <div class="profile">
-          <div class="profile-image">
-            <img th:src="${user.picture}" alt="Profile Picture">
-          </div>
-          <div>
-            <div class="profile-name">
-              <td th:text="${user.name} + ' ' + ${user.surname}"></td>
-            </div>
-            <div class="info">
-              <p style="text-align: left; padding-left: 0px">Ratings</p>
-              <div class="rating-stars">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-            </div>
-          </div>
           <div class="profile-buttons">
             <div class="profile-cta">
-              <button type="button"><a>Contact</a></button>
+              <button type="button" id="contactButton">Contact</button>
             </div>
           </div>
-        </div>
-        <div class="profile">
-          <div class="left-section">
-            <!-- <div class="profile-languages">
-              <p>Languages</p>
-              <ul>
-                <!-- <li class="skills" th:text="${user.language}"></li>
-                <!--                <li class="skills">English</li>-->
-                <!--                <li class="skills">Spanish</li>-->
-            <!-- </ul>
-          </div>-->
-            <div class="profile-services">
-              <p>Services</p>
-              <div class="services-count" th:text="${user.services.size()}"></div>
-              <div class="services-text">completed projects</div>
-              <p>Skills</p>
-              <ul>
-                <li class="skills" th:text="${user.sellerIdSeller.skills}"></li>
-              </ul>
-              <p>Education</p>
-              <ul>
-                <li class="skills" th:text="${user.sellerIdSeller.education}"></li>
-              </ul>
+
+          <div class="modal" id="bookingModal" style="display: none;">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form id="bookingForm">
+                <!-- Add form inputs here, such as name, email, phone number, etc. -->
+                <label for="bookingDate">Booking Date:</label>
+                <input type="text" id="bookingDate" name="bookingDate" required>
+                <div id="calendar"></div>
+                <input type="submit" value="Submit">
+              </form>
             </div>
           </div>
-          <div class="vertical-line"></div>
-          <div class="right-section">
-            <p>Description</p>
-            <textarea class="profile-description" th:utext="${user.description}" rows="21" cols="80" readonly/>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+
+</script>
+
 </body>
 </html>

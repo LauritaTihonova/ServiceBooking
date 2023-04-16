@@ -53,6 +53,68 @@
         color: #955aed;
         padding-top: 80px;
         }
+
+        .filter {
+            float: left;
+            margin-right: 20px;
+            width: 200px;
+        }
+
+        .filter select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .filter-container {
+            border: 2px solid #955aed;
+            border-radius: 25px;
+            height: auto;
+            flex-direction: column;
+            display: flex;
+            float: left;
+            margin: 50px;
+            padding: 50px;
+        }
+
+        input[type=checkbox] {
+          appearance: none;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          width: 20px;
+          height: 20px;
+          border: 2px solid #955aed;
+          border-radius: 5px;
+          background-color: #f8f9fa;
+          transition: border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+          cursor: pointer;
+          margin-right: 10px;
+        }
+
+        input[type=checkbox]:checked {
+          background-color: #955aed;
+        }
+
+        input[type=checkbox]:focus {
+          outline: none;
+          box-shadow: 0 0 0 2px rgba(149, 90, 237, 0.2);
+        }
+
+        .filter input[type="submit"] {
+            width: 100%;
+            background-color: #955aed;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            padding: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .filter input[type="submit"]:hover {
+            background-color: #8245c3;
+        }
     </style>
     <nav>
         <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
@@ -66,6 +128,43 @@
 </head>
 <body>
 <h1 class="main-text">Service List By Category</h1>
+<div class="filter-container">
+    <div class="filter">
+        <label for="specialist-filter">Specialist rating:</label>
+        <select id="specialist-filter">
+            <option value="">All</option>
+            <option value="service1">4.5-5 stars</option>
+            <option value="service2">4-4.5 stars</option>
+            <option value="service3">3-4 starts</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="price-filter">Price range:</label>
+        <select id="price-filter">
+            <option value="">All</option>
+            <option value="0-10">0-50 EUR</option>
+            <option value="10-20">50-200 EUR</option>
+            <option value="20-30">200-500 EUR</option>
+            <option value="20-30">+500 EUR</option>
+        </select>
+    </div>
+    <div class="filter">
+        <label for="language-filter">Specialist language:</label>
+        <select id="language-filter">
+            <option value="">All</option>
+            <option value="0-10">English</option>
+            <option value="10-20">Lithuanian</option>
+            <option value="20-30">Latvian</option>
+            <option value="20-30">Russian</option>
+        </select>
+    </div>
+    <label>
+        <input type="checkbox" name="option1" value="value1"> Has more then 10 finished jobs
+    </label>
+    <div class="filter">
+        <input type="submit" value="Filter">
+    </div>
+</div>
 <table>
     <thead>
     <tr>

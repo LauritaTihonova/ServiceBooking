@@ -44,7 +44,7 @@ public class MainController {
 
     @RequestMapping(path = "/profile")
     public String userProfile() {
-        return "Specialist_Profile_TEST.html";
+        return "Specialist_Profile.html";
     }
 
     @Autowired
@@ -173,7 +173,7 @@ public class MainController {
     public String getSpecialistProfile(@PathVariable Integer userId, Model model) {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
-        return "Specialist_Profile_TEST.html";
+        return "Specialist_Profile.html";
     }
 
 }
