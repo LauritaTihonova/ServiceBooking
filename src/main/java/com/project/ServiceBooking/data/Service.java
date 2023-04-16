@@ -42,6 +42,21 @@ public class Service {
     @OneToMany(mappedBy = "idServices")
     private Set<Booking> bookings = new LinkedHashSet<>();
 
-    @Column(name = "sub_category", length = 45)
+    @Transient
     private String subCategory;
+
+    @PostLoad
+    private void fillTransientFields() {
+        if (idServicesCategory != null) {
+            subCategory = idServicesCategory.getSubCategory();
+        }
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
 }
