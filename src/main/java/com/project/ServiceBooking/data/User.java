@@ -44,8 +44,8 @@ public class User {
     @JoinColumn(name = "id_account", nullable = true)
     private Account accountIdaccount;
 
-    @Column(name = "Language", length = 45)
-    private String language;
+    //@Column(name = "Language", length = 45)
+    //private String language;
 
     @Column(name = "Description", length = 5000)
     private String description;

@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Profile</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
-    <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
-    <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-    <style>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
+  <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <style>
       body {
         background-color: #f8f9fa;
       }
@@ -199,8 +199,7 @@
         border-left: 1px solid #955aed;
         height: 760px;
       }
-
-      a {
+             a {
         color: white;
         text-decoration:none;
         }
@@ -215,12 +214,14 @@
         border-radius: 5px;
         cursor: pointer;
         margin: 15px 10px 0px 10px;
-        transition: background-color 0.3s ease-in-out;}
-
-        .main-text{
-          text-aling: center;
-          color: #955aed;
+        transition: background-color 0.3s ease-in-out;
         }
+        .main-text{
+        text-align: center;
+        color: #955aed;
+        padding-top: 80px;
+        }
+
     </style>
   <nav>
     <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo">
@@ -233,85 +234,64 @@
   </nav>
 </head>
 <body>
+<h1 class="main-text">Specialist Profile</h1>
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
       <div class="profile-container">
-        <h1 class="main-text">Specialist Profile</h1>
         <div class="profile">
           <div class="profile-image">
-            <img src="https://i.ibb.co/jL6vj36/profile-picture.jpg" alt="Profile Picture">
+            <img th:src="${user.picture}" alt="Profile Picture">
           </div>
           <div>
             <div class="profile-name">
-              John Doe
+              <td th:text="${user.name} + ' ' + ${user.surname}"></td>
             </div>
-              <div class="info">
-                <p style="text-align: left; padding-left: 0px">Ratings</p>
-                <div class="rating-stars">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                </div>
+            <div class="info">
+              <p style="text-align: left; padding-left: 0px">Ratings</p>
+              <div class="rating-stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
               </div>
+            </div>
           </div>
           <div class="profile-buttons">
             <div class="profile-cta">
-              <button>Contact</button>
-            </div>
-            <div class="profile-cta">
-              <button>Edit</button>
+              <button type="button"><a>Contact</a></button>
             </div>
           </div>
         </div>
         <div class="profile">
           <div class="left-section">
-            <div class="profile-languages">
+            <!-- <div class="profile-languages">
               <p>Languages</p>
               <ul>
-                <li class="skills">Lithuanian</li>
-                <li class="skills">English</li>
-                <li class="skills">Spanish</li>
-              </ul>
-            </div>
+                <!-- <li class="skills" th:text="${user.language}"></li>
+                <!--                <li class="skills">English</li>-->
+                <!--                <li class="skills">Spanish</li>-->
+            <!-- </ul>
+          </div>-->
             <div class="profile-services">
               <p>Services</p>
-              <div class="services-count">15</div>
+              <div class="services-count" th:text="${user.services.size()}"></div>
               <div class="services-text">completed projects</div>
               <p>Skills</p>
               <ul>
-                <li class="skills">Web Design</li>
-                <li class="skills">Responsive Design</li>
-                <li class="skills">Front-end Development</li>
+                <li class="skills" th:text="${user.sellerIdSeller.skills}"></li>
               </ul>
               <p>Education</p>
               <ul>
-                <li class="skills">Kaunas Technology university</li>
-                <li class="skills">Code Academy</li>
+                <li class="skills" th:text="${user.sellerIdSeller.education}"></li>
               </ul>
             </div>
           </div>
           <div class="vertical-line"></div>
           <div class="right-section">
             <p>Description</p>
-            <div class="profile-description">
-              👋 Hi, there, Welcome to my profile!<br><br>
-              🏆Developer, Website Builder and Designer, eCommerce VA, Logo Designer, Video and Photo Editor.<br><br>
-
-              Who is looking for employment in a remote type of job. Ready to use my all programming and eCommerce management skills to help people with various kind of problems, to be helpful in projects, keep pursuing the mission of a company or team.<br><br>
-
-              ⭐ Developer for 5 years.<br>
-              ⭐ Website builder, designer and eCommerce VA in 5+ projects for 4 years.<br>
-              ⭐ 100% Client Satisfaction's consistent best quality and service delivery.<br>
-              ⭐ Detailed-oriented, self-motivated, punctual and fast learner.<br><br>
-
-              I’m always on the lookout to learn the latest technology and welcome all projects that require me to get familiar with new technologies.<br><br>
-
-              Regards,<br>
-              Jogn Doe
-            </div>
+            <textarea class="profile-description" th:utext="${user.description}" rows="21" cols="80" readonly/>
           </div>
         </div>
       </div>
