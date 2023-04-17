@@ -7,9 +7,7 @@
 
 
   <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
-
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
   <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
@@ -134,15 +132,15 @@
 
 <div class="pageContent">
 <div class="container-one">
-    <form action="action_page.php">
+    <form action="/action_page.php">
       <h5>First Name</h5>
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
+      <input type="text" name="firstname" placeholder="Your name.." required>
       <h5>Last Name</h5>
-      <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+      <input required type="text" name="lastname" placeholder="Your last name..">
       <h5>Email</h5>
-      <input type="text" id="email" name="email" placeholder="Your email..">
+      <input required type="text" name="email" placeholder="Your email..">
       <h5>What can we help you with?</h5>
-      <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+      <textarea required id="subject" name="subject" placeholder="Write something.." style="height:200px" ></textarea>
       <button class="submit"><a href="/contact-us/submit">Submit</a></button>
       </form>
   </div>
