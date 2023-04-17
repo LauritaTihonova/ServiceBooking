@@ -1,22 +1,21 @@
 package com.project.ServiceBooking.data;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-
-import org.hibernate.annotations.Cascade;
-
-
 
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Getter
-@Setter
+
 @Entity
+@Data
 @Table(name = "users")
 public class User {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_users", nullable = false)
@@ -37,7 +36,7 @@ public class User {
     @Column(name = "Status", nullable = false, length = 45)
     private Status status;
 
-    @Column(name = "Picture",  length = 255)
+    @Column(name = "Picture", length = 255)
     private String picture;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
@@ -72,5 +71,6 @@ public class User {
 
     @OneToMany(mappedBy = "userLang")
     private Set<Language> languages = new LinkedHashSet<>();
+
 
 }

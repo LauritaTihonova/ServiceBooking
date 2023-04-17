@@ -3,8 +3,10 @@ package com.project.ServiceBooking.data;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -12,6 +14,7 @@ import java.time.Instant;
 @Table(name = "booking")
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Booking", nullable = false)
     private Integer id;
 
@@ -19,7 +22,8 @@ public class Booking {
     private Integer idSeller;
 
     @Column(name = "Date")
-    private Instant date;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_users")

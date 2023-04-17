@@ -10,6 +10,7 @@ import lombok.Setter;
 @Table(name = "payment")
 public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_Payment", nullable = false)
     private Integer id;
 

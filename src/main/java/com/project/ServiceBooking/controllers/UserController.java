@@ -45,7 +45,6 @@ public class UserController {
         model.addAttribute("user", new User());
         return "registration";
     }
-    com.project.ServiceBooking.data.Role myRole = com.project.ServiceBooking.data.Role.CLIENT;
 
     @PostMapping("/process_register_client")
     public String addClient(User user, Model model) throws MessagingException {
@@ -60,7 +59,6 @@ public class UserController {
             emailService.sendHtmlMail(user);
             model.addAttribute("message","A verification email has been sent ti your email address.");
         }else{
-            //model.addAttribute("UserAlreadyExist", true);
             model.addAttribute("message","User already exist.");
         }
         return "/login";
@@ -95,7 +93,6 @@ public class UserController {
         }else{
             User user=verificationToken.getUser();
             //if the user account is not activated
-            //Status userStatus=user.getStatus();
             if(user.getStatus()!=Status.ACTIVE){
                 Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
                 //check if the token os expired
@@ -118,13 +115,11 @@ public class UserController {
                 model.addAttribute("message","Your account is already activated");
             }
         }
-
         return "activation";
     }
 
     @GetMapping("/updateUser/{id}")
     public String updateUser(@PathVariable("id") Integer id, Model model){
-
         User user=userService.findById(id);
         model.addAttribute("user", user);
         return "/updateUser";
