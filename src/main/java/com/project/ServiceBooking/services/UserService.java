@@ -1,5 +1,6 @@
 package com.project.ServiceBooking.services;
 
+import com.project.ServiceBooking.data.Language;
 import com.project.ServiceBooking.data.Role;
 import com.project.ServiceBooking.data.Status;
 import com.project.ServiceBooking.data.User;
@@ -7,9 +8,13 @@ import com.project.ServiceBooking.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import com.project.ServiceBooking.data.Status;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -59,5 +64,12 @@ public class UserService {
         return saveUser(user);
     }
 
-
+    public Set<Language> getLanguages(User user){
+        Set<Language> languages = user.getLanguages();
+        return languages;
+    }
+    public User getUserById(Integer userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.orElse(null);
+    }
 }

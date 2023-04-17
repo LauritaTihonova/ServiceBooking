@@ -26,5 +26,9 @@ public class ServicesService {
     public void deleteById(Integer id){
         serviceRepository.deleteById(id);
     }
+
+    public List<com.project.ServiceBooking.data.Service> findBySubCategory(String subCategory) {
+        return serviceRepository.findBySubCategory(subCategory);
+    }
 }
 
