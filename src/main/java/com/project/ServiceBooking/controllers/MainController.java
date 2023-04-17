@@ -10,6 +10,13 @@ import com.project.ServiceBooking.services.LanguageService;
 import com.project.ServiceBooking.services.SkillService;
 import com.project.ServiceBooking.services.EducationService;
 
+
+import com.project.ServiceBooking.services.ServicesCategoryService;
+import com.project.ServiceBooking.services.ServicesService;
+
+import com.project.ServiceBooking.services.UserService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -76,8 +83,10 @@ public class MainController {
         if(user.getRole() == Role.SPECIALIST){
             ArrayList<Skill> skills = (ArrayList<Skill>)skillService.findBySeller(user.getSellerIdSeller().getId());
             ArrayList<Education> educations = (ArrayList<Education>)educationService.findBySeller(user.getSellerIdSeller().getId());
+            ArrayList<Service> services = (ArrayList<Service>)servicesService.findByUserId(user.getId());
             editForm.setSkillList(skills);
             editForm.setEducationList(educations);
+            editForm.setServiceList(services);
         }
 
         model.addAttribute("wrapper", editForm);
@@ -106,10 +115,11 @@ public class MainController {
         if(user.getRole() == Role.SPECIALIST){
             ArrayList<Skill> skills = (ArrayList<Skill>)skillService.findBySeller(user.getSellerIdSeller().getId());
             ArrayList<Education> educations = (ArrayList<Education>)educationService.findBySeller(user.getSellerIdSeller().getId());
+            ArrayList<Service> services = (ArrayList<Service>)servicesService.findByUserId(user.getId());
             editForm.setSkillList(skills);
             editForm.setEducationList(educations);
+            editForm.setServiceList(services);
         }
-
         model.addAttribute("wrapper", editForm);
 
         if(user.getRole() == Role.CLIENT){

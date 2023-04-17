@@ -30,5 +30,9 @@ public class ServicesService {
     public List<com.project.ServiceBooking.data.Service> findBySubCategory(String subCategory) {
         return serviceRepository.findBySubCategory(subCategory);
     }
+
+    public List<com.project.ServiceBooking.data.Service> findByUserId(Integer userId){
+        return serviceRepository.findByUserId(userId);
+    }
 }
 
