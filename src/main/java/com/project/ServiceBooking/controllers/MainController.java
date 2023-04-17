@@ -27,12 +27,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
 
-
-=======
 import java.security.Principal;
->>>>>>> 04ad70a5fbc002c843e5dfcddf44971e816a20ab
+
 
 
 @Controller
@@ -165,11 +162,7 @@ public class MainController {
         return "ServiceCategoryList.html";
     }
 
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 04ad70a5fbc002c843e5dfcddf44971e816a20ab
     @Autowired
     ServicesService servicesService;
     @RequestMapping(path = "/services/services")
