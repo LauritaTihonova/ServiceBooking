@@ -310,8 +310,8 @@
                                         <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
                                     </td>
                                 </tr>
-                                <input type="text" class="form-control" placeholder="language" th:field="*{newLanguage}">
-                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2">Add</button>
+                                <input placeholder="language" th:field="*{newLanguage}">
+                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2 btn-success">Add</button>
 
                             </div>
                             <div class="profile-services">

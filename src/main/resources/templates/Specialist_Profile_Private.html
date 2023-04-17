@@ -286,14 +286,12 @@
               <div class="services-count" th:text="${wrapper.user.services.size()}"></div>
               <div class="services-text">completed projects</div>
               <p>Skills</p>
-              <ul>
-                <li class="skills" th:text="${wrapper.user.sellerIdSeller.skills}"></li>
-<!--                <li cass="skills">Front-end Development</li>-->
+              <ul th:each="skill:${wrapper.skillList}">
+                <li class="skills" th:text="${skill.getSkill()}"/>
               </ul>
               <p>Education</p>
-              <ul>
-                <li class="skills" th:text="${wrapper.user.sellerIdSeller.education}"></li>
-<!--                <li class="skills">Code Academy</li>-->
+              <ul th:each="edu:${wrapper.educationList}">
+                <li class="skills" th:text="${edu.getEducation()}"/>
               </ul>
             </div>
           </div>

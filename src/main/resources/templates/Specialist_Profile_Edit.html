@@ -319,8 +319,8 @@
                                         <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
                                     </td>
                                 </tr>
-                                <input type="text" class="form-control" placeholder="language" th:field="*{newLanguage}">
-                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2">Add</button>
+                                <input placeholder="language" th:field="*{newLanguage}">
+                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2 btn-success">Add</button>
 
 
                             </div>
@@ -331,21 +331,30 @@
                                 <div class="services-text">completed projects</div>
 
                                 <p>Skills</p>
-                                <input type="text" th:field="*{user.sellerIdSeller.skills}" class="form-control" placeholder="skill">
-<!--                                <ul class="list-group" id="skills list">-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Web Design"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Responsive Design"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Front-end Development"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new skill"><button class="deleteBtn">Add</button></li>-->
-<!--                                </ul>-->
+                                <input type="hidden" th:field="*{skillList}">
+                                <tr th:each="skill, itemStat : *{skillList}">
+                                    <td>
+                                        <input th:field="*{skillList[__${itemStat.index}__].skill}" />
+                                        <input type="hidden" th:field="*{skillList[__${itemStat.index}__].id}">
+                                        <input type="hidden" th:field="*{skillList[__${itemStat.index}__].idSeller}">
+                                        <a th:href="@{/private/edit/deleteSkill(skillId=${skill.id})}" class="btn btn-danger ml-2">Delete</a>
+                                    </td>
+                                </tr>
+                                <input placeholder="skill" th:field="*{newSkill}">
+                                <button th:formaction="@{/private/edit/addSkill}" class="btn ml-2 btn-success">Add</button>
 
                                 <p>Education</p>
-                                <input type="text" th:field="*{user.sellerIdSeller.education}" class="form-control" placeholder="skill">
-<!--                                <ul class="list-group" id="education list">-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Kaunas Technology university"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Code Academy"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new education"><button class="deleteBtn">Add</button></li>-->
-<!--                                </ul>-->
+                                <input type="hidden" th:field="*{educationList}">
+                                <tr th:each="edu, itemStat : *{educationList}">
+                                    <td>
+                                        <input th:field="*{educationList[__${itemStat.index}__].education}" />
+                                        <input type="hidden" th:field="*{educationList[__${itemStat.index}__].id}">
+                                        <input type="hidden" th:field="*{educationList[__${itemStat.index}__].idSeller}">
+                                        <a th:href="@{/private/edit/deleteEducation(educationId=${edu.id})}" class="btn btn-danger ml-2">Delete</a>
+                                    </td>
+                                </tr>
+                                <input placeholder="education" th:field="*{newEducation}">
+                                <button th:formaction="@{/private/edit/addEducation}" class="btn ml-2 btn-success">Add</button>
                             </div>
                         </div>
                         <div class="vertical-line"></div>

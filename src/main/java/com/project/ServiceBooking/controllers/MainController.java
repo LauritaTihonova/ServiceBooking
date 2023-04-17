@@ -3,11 +3,7 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
-import com.project.ServiceBooking.services.LanguageService;
-import com.project.ServiceBooking.services.ServicesCategoryService;
-import com.project.ServiceBooking.services.ServicesService;
-
-import com.project.ServiceBooking.services.UserService;
+import com.project.ServiceBooking.services.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +43,11 @@ public class MainController {
     UserService userService;
     @Autowired
     LanguageService languageService;
+    @Autowired
+    SkillService skillService;
+    @Autowired
+    EducationService educationService;
+
     @GetMapping("/private")
     public String privateProfile(Model model){
 // THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
@@ -54,12 +55,19 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
+        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         PrivateEditForm editForm = new PrivateEditForm();
         editForm.setUser(user);
         editForm.setLanguageList(languages);
+
+        if(user.getRole() == Role.SPECIALIST){
+            ArrayList<Skill> skills = (ArrayList<Skill>)skillService.findBySeller(user.getSellerIdSeller().getId());
+            ArrayList<Education> educations = (ArrayList<Education>)educationService.findBySeller(user.getSellerIdSeller().getId());
+            editForm.setSkillList(skills);
+            editForm.setEducationList(educations);
+        }
 
         model.addAttribute("wrapper", editForm);
 
@@ -77,12 +85,19 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(7);
+        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         PrivateEditForm editForm = new PrivateEditForm();
         editForm.setUser(user);
         editForm.setLanguageList(languages);
+
+        if(user.getRole() == Role.SPECIALIST){
+            ArrayList<Skill> skills = (ArrayList<Skill>)skillService.findBySeller(user.getSellerIdSeller().getId());
+            ArrayList<Education> educations = (ArrayList<Education>)educationService.findBySeller(user.getSellerIdSeller().getId());
+            editForm.setSkillList(skills);
+            editForm.setEducationList(educations);
+        }
 
         model.addAttribute("wrapper", editForm);
 
@@ -99,6 +114,10 @@ public class MainController {
     public ModelAndView privateEdited(@ModelAttribute("wrapper") PrivateEditForm editForm, ModelMap model){
         userService.saveUser(editForm.user);
         languageService.save((ArrayList<Language>)editForm.languageList);
+        if(editForm.user.getRole() == Role.SPECIALIST){
+            skillService.save((ArrayList<Skill>) editForm.skillList);
+            educationService.save((ArrayList<Education>) editForm.educationList);
+        }
 
         model.addAttribute("wrapper", editForm);
 
@@ -118,8 +137,56 @@ public class MainController {
         languageService.save((ArrayList<Language>)editForm.languageList);
         Language languageToAdd = new Language();
         languageToAdd.setLanguage(editForm.newLanguage);
-        languageToAdd.setIdUsers(userService.findById(editForm.user.getId()));
+        languageToAdd.setIdUsers(editForm.user);
         languageService.saveOne(languageToAdd);
+
+        model.addAttribute("wrapper", editForm);
+
+        return new ModelAndView("redirect:/private/edit", model);
+    }
+
+    @GetMapping("/private/edit/deleteSkill")
+    public String deleteSkill(@RequestParam Integer skillId){
+        skillService.deleteById(skillId);
+        return "redirect:/private/edit";
+    }
+
+    @PostMapping(value = "/private/edit/addSkill")
+    public ModelAndView addSkill(@ModelAttribute("wrapper") PrivateEditForm editForm, ModelMap model){
+        userService.saveUser(editForm.user);
+        languageService.save((ArrayList<Language>)editForm.languageList);
+        skillService.save((ArrayList<Skill>) editForm.skillList);
+        educationService.save((ArrayList<Education>) editForm.educationList);
+
+        Skill skillToAdd = new Skill();
+        skillToAdd.setSkill(editForm.newSkill);
+        skillToAdd.setIdSeller(editForm.user.getSellerIdSeller());
+
+        skillService.saveOne(skillToAdd);
+
+        model.addAttribute("wrapper", editForm);
+
+        return new ModelAndView("redirect:/private/edit", model);
+    }
+
+    @GetMapping("/private/edit/deleteEducation")
+    public String deleteEducation(@RequestParam Integer educationId){
+        educationService.deleteById(educationId);
+        return "redirect:/private/edit";
+    }
+
+    @PostMapping(value = "/private/edit/addEducation")
+    public ModelAndView addEducation(@ModelAttribute("wrapper") PrivateEditForm editForm, ModelMap model){
+        userService.saveUser(editForm.user);
+        languageService.save((ArrayList<Language>)editForm.languageList);
+        skillService.save((ArrayList<Skill>) editForm.skillList);
+        educationService.save((ArrayList<Education>) editForm.educationList);
+
+        Education educationToAdd = new Education();
+        educationToAdd.setEducation(editForm.newEducation);
+        educationToAdd.setIdSeller(editForm.user.getSellerIdSeller());
+
+        educationService.saveOne(educationToAdd);
 
         model.addAttribute("wrapper", editForm);
 

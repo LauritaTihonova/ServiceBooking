@@ -12,4 +12,12 @@ public class PrivateEditForm {
     public List<Language> languageList;
 
     public String newLanguage;
+
+    public List<Skill> skillList;
+
+    public String newSkill;
+
+    public List<Education> educationList;
+
+    public String newEducation;
 }

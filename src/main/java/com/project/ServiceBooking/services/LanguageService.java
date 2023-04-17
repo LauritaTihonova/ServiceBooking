@@ -1,7 +1,6 @@
 package com.project.ServiceBooking.services;
 
 import com.project.ServiceBooking.data.Language;
-import com.project.ServiceBooking.data.User;
 import com.project.ServiceBooking.repositories.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
