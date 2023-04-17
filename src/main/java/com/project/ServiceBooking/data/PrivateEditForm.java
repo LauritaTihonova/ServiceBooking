@@ -20,4 +20,6 @@ public class PrivateEditForm {
     public List<Education> educationList;
 
     public String newEducation;
+
+    public List<Service> serviceList;
 }
