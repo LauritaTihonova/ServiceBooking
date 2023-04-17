@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.w3.org/1999/xhtml">
+    <title>Withdraw</title>
+</head>
+<body>
+
+<div th:if="${success}">
+    <p th:text="${success}"></p>
+</div>
+<div th:if="${error}">
+    <p th:text="${error}"></p>
+</div>
+<div th:if="${incorrect}">
+    <p th:text="${incorrect}"></p>
+</div>
+
+</body>
+</html>

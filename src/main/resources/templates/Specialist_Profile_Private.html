@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
     <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-    <style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <head>
+
+  </head>
+
+  <style>
       body {
         background-color: #f8f9fa;
       }
@@ -216,6 +222,29 @@
         margin: 15px 10px 0px 10px;
         transition: background-color 0.3s ease-in-out;
         }
+        .submitAmount{
+        padding: 10px;
+        font-size: 17px;
+        color: white;
+        background-color: #955aed;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+        margin: 10px;
+        }
+        .inputWithdraw{
+        border: 1px solid #955aed;
+        border-radius: 5px;
+        margin: 15px;
+        }
+
+        .formWithdraw{
+        display: flex;
+        flex-direction: row;
+        margin-left:200px;
+        }
+
 
     </style>
   <nav>
@@ -240,7 +269,7 @@
           <div>
             <div class="profile-name">
               <td th:text="${wrapper.user.name} + ' ' + ${wrapper.user.surname}"></td>
-            </div>
+              </div>
               <div class="info">
                 <p style="text-align: left; padding-left: 0px">Ratings</p>
                 <div class="rating-stars">
@@ -269,6 +298,25 @@
               <p th:text="'Card added: **** **** **** **' + ${#strings.substring(wrapper.user.accountIdaccount.cardNumber, 14, 16)}"></p>
             </div>
           </div>
+        </div>
+
+        <p>
+        <form class="formWithdraw" action="/withdraw" method="post">
+          <label for="password">Password:</label>
+          <input class="inputWithdraw" type="password" id="password" name="password" placeholder="Your password.." required>
+          <label for="amount">Amount:</label>
+          <input class="inputWithdraw" type="number" id="amount" name="amount" min="1" placeholder="Amount.." required>
+          <input class="submitAmount" type="submit" value="Withdraw" onclick="displayPopup();">
+        </form>
+        </p>
+        <div th:if="${success}">
+          <p id="success" style="display: none" th:text="${success}"></p>
+        </div>
+        <div th:if="${error}">
+          <p id="error" style="display: none" th:text="${error}"></p>
+        </div>
+        <div th:if="${incorrect}">
+          <p id="incorrect" style="display: none" th:text="${incorrect}"></p>
         </div>
 
         <div class="profile">
@@ -305,5 +353,8 @@
     </div>
   </div>
 </div>
+<script>
+
+</script>
 </body>
 </html>

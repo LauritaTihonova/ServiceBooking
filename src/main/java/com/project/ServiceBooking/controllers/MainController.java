@@ -3,20 +3,17 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
-
+import com.project.ServiceBooking.repositories.AccountRepository;
 import com.project.ServiceBooking.services.*;
 
 import com.project.ServiceBooking.services.LanguageService;
 import com.project.ServiceBooking.services.SkillService;
 import com.project.ServiceBooking.services.EducationService;
 
-import com.project.ServiceBooking.repositories.UserRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -24,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -32,10 +30,7 @@ import java.util.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-
-import java.security.Principal;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -263,17 +258,6 @@ public class MainController {
         List<Service> services = servicesService.findBySubCategory(subCategory);
         model.addAttribute("services", services);
         return "ServiceList.html";
-    }
-
-
-    @Autowired
-    AccountServiceTest accountServiceTest;
-    @GetMapping(path = "/user/balance/{id}")
-    public String balanceInfo (@PathVariable ("id") Integer id, Model model ) {
-        Account account = accountServiceTest.getAccountId(id);
-        model.addAttribute("account", account);
-        model.addAttribute("id_account", id);
-        return "paymentsInfo.html";
     }
 
     @GetMapping("/specialist/{userId}")
