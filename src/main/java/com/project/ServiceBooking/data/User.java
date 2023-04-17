@@ -67,7 +67,8 @@ public class User {
     @OneToMany(mappedBy = "usersIdUsers")
     private Set<Review> reviews = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "idUsers")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Booking> bookings = new LinkedHashSet<>();
+
 
 }

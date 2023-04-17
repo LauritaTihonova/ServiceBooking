@@ -33,4 +33,9 @@ public class Booking {
         this.idServices = service;
     }
 
+    public void setClient(User client) {
+        this.idUsers = client;
+    }
+
+
 }
