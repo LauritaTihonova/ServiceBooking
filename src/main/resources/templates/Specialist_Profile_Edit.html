@@ -369,6 +369,26 @@
                             <textarea type="text" th:field="*{user.description}" class="profile-description border" placeholder="your description" rows="21" cols="80"/>
                         </div>
                     </div>
+                    <div>
+                        <hr>
+                        <p class="p-4">Your services:</p>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Service name</th>
+                                <th>Description</th>
+                                <th>Price, EUR</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="service : ${wrapper.serviceList}">
+                                <td th:text="${service.name}"></td>
+                                <td th:text="${service.description}"></td>
+                                <td th:text="${service.price}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
