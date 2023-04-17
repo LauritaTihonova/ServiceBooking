@@ -23,7 +23,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin: 15px 10px 0px 10px;
+        margin: 15px 10px 15px 10px;
         transition: background-color 0.3s ease-in-out;
         }
 
@@ -56,6 +56,7 @@
         transition: background-color 0.3s ease-in-out;
         }
 
+
         footer{
         padding: 30px;
         background-color:#955aed;
@@ -73,7 +74,20 @@
       content: "";
       display: table;
       clear: both;
+
+      table {
+          border-collapse: collapse;
+          margin: 40px 200px;
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 100px;
+
       }
+      .main-text{
+        text-align: center;
+        color: #955aed;
+        padding-top: 80px;
+        }
     </style>
     <nav>
         <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
@@ -86,20 +100,29 @@
     </nav>
 </head>
 <body>
-
+<h1 class="main-text">Service List By Category</h1>
 <table>
+    <thead>
     <tr>
         <th>Service name</th>
         <th>Description</th>
         <th>Price, EUR</th>
 
+        <th>Specialist Profile</th>
+
     </tr>
-    <tr>
-<!--    <tr th:each="service : ${serviceDescription}">-->
+    </thead>
+    <tbody>
+    <tr th:each="service : ${services}">
         <td th:text="${service.name}"></td>
         <td th:text="${service.description}"></td>
         <td th:text="${service.price}"></td>
+        <td>
+            <Button class="header"><a th:href="@{'/specialist/' + ${service.usersIdUsers.id}}">View Profile</a></Button>
+        </td>
     </tr>
+
+    </tbody>
 
 </table>
 

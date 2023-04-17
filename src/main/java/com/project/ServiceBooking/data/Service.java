@@ -17,7 +17,7 @@ public class Service {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_services_category")
+    @JoinColumn(name = "id_services_category", insertable = false, updatable = false)
     private ServicesCategory idServicesCategory;
 
     @Column(name = "description", length = 45)
@@ -42,4 +42,25 @@ public class Service {
     @OneToMany(mappedBy = "idServices")
     private Set<Booking> bookings = new LinkedHashSet<>();
 
+    @Transient
+    private String subCategory;
+
+    @PostLoad
+    private void fillTransientFields() {
+        if (idServicesCategory != null) {
+            subCategory = idServicesCategory.getSubCategory();
+        }
+    }
+
+    public String getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_services_category", referencedColumnName = "id_services_category", nullable = false)
+    private ServicesCategory servicesCategory;
 }
