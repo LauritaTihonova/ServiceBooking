@@ -229,7 +229,7 @@
     </nav>
 </head>
 <body>
-<form action="#" th:action="@{/private/edit}" th:object="${wrapper}" method="post">
+<form action="#" th:object="${wrapper}" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
@@ -264,7 +264,7 @@
 
                         <div class="profile-buttons">
                             <div class="profile-cta">
-                                <button type="submit">Save changes</button>
+                                <button type="submit" th:formaction="@{/private/edit}">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -301,6 +301,7 @@
                             <div class="profile-languages">
 
                                 <p>Languages</p>
+                                <input type="hidden" th:field="*{languageList}">
                                 <tr th:each="lang, itemStat : *{languageList}">
                                     <td>
                                         <input th:field="*{languageList[__${itemStat.index}__].language}" />
@@ -309,8 +310,8 @@
                                         <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
                                     </td>
                                 </tr>
-                                <input type="text" placeholder="language" class="form-control" th:value="*{newLanguage}">
-                                <a th:href="@{/private/edit/addLang(inputLanguage=${newLanguage}, userId=${wrapper.user.id})}" class="btn ml-2">Add</a>
+                                <input type="text" class="form-control" placeholder="language" th:field="*{newLanguage}">
+                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2">Add</button>
 
                             </div>
                             <div class="profile-services">

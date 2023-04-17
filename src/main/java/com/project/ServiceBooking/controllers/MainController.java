@@ -54,7 +54,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -77,7 +77,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -95,8 +95,8 @@ public class MainController {
     }
 
     //this will execute after pressing save button:
-    @PostMapping("/private/edit")
-    public ModelAndView privateEdited(@ModelAttribute("userProfile") PrivateEditForm editForm, ModelMap model){
+    @PostMapping(value = "/private/edit")
+    public ModelAndView privateEdited(@ModelAttribute("wrapper") PrivateEditForm editForm, ModelMap model){
         userService.saveUser(editForm.user);
         languageService.save((ArrayList<Language>)editForm.languageList);
 
@@ -112,15 +112,19 @@ public class MainController {
         return "redirect:/private/edit";
     }
 
-    @GetMapping("/private/edit/addLang")
-    public String addLanguage(@RequestParam String inputLanguage, @RequestParam Integer userId){
+    @PostMapping(value = "/private/edit/addLang")
+    public ModelAndView addLang(@ModelAttribute("wrapper") PrivateEditForm editForm, ModelMap model){
+        userService.saveUser(editForm.user);
+        languageService.save((ArrayList<Language>)editForm.languageList);
         Language languageToAdd = new Language();
-        languageToAdd.setLanguage(inputLanguage);
-        languageToAdd.setIdUsers(userService.findById(userId));
+        languageToAdd.setLanguage(editForm.newLanguage);
+        languageToAdd.setIdUsers(userService.findById(editForm.user.getId()));
         languageService.saveOne(languageToAdd);
-        return "redirect:/private/edit";
-    }
 
+        model.addAttribute("wrapper", editForm);
+
+        return new ModelAndView("redirect:/private/edit", model);
+    }
 
     @RequestMapping(path = "/payment")
     public String payment() {
