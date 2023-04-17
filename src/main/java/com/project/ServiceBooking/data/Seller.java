@@ -25,4 +25,9 @@ public class Seller {
     @OneToMany(mappedBy = "sellerIdSeller")
     private Set<User> users = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "idSeller", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Skill> allSkills = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "idSeller", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Education> allEducation = new LinkedHashSet<>();
 }

@@ -229,41 +229,42 @@
     </nav>
 </head>
 <body>
-<form action="#" th:action="@{/private/edit}" th:object="${userProfile}" method="post">
+<form action="#" th:object="${wrapper}" method="post">
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
                 <div class="profile-container">
                     <div class="profile">
                         <div class="profile-image">
-                            <img th:src="${userProfile.picture}" alt="Profile Picture">
+                            <img th:src="${wrapper.user.picture}" alt="Profile Picture">
                         </div>
                         <div>
                             <div class="profile-name">
 <!--                                some other important info to be passed further:-->
-                                <input type="hidden" th:field="*{id}">
-                                <input type="hidden" th:field="*{email}">
-                                <input type="hidden" th:field="*{password}">
-                                <input type="hidden" th:field="*{status}">
-                                <input type="hidden" th:field="*{picture}">
-                                <input type="hidden" th:field="*{accountIdaccount}">
-                                <input type="hidden" th:field="*{role}">
-                                <input type="hidden" th:field="*{sellerIdSeller}">
-                                <input type="hidden" th:field="*{payments}">
-                                <input type="hidden" th:field="*{services}">
-                                <input type="hidden" th:field="*{reviews}">
-                                <input type="hidden" th:field="*{bookings}">
-                                <input type="hidden" th:field="*{accountIdaccount.money}">
+                                <input type="hidden" th:field="*{user.id}">
+                                <input type="hidden" th:field="*{user.email}">
+                                <input type="hidden" th:field="*{user.password}">
+                                <input type="hidden" th:field="*{user.status}">
+                                <input type="hidden" th:field="*{user.picture}">
+                                <input type="hidden" th:field="*{user.accountIdaccount}">
+                                <input type="hidden" th:field="*{user.role}">
+                                <input type="hidden" th:field="*{user.sellerIdSeller}">
+                                <input type="hidden" th:field="*{user.payments}">
+                                <input type="hidden" th:field="*{user.services}">
+                                <input type="hidden" th:field="*{user.reviews}">
+                                <input type="hidden" th:field="*{user.bookings}">
+                                <input type="hidden" th:field="*{user.accountIdaccount.money}">
+
 
                                 <!--                                Edit name and surname: -->
-                                <input type="text" th:field="*{name}" placeholder="name" class="form-control">
-                                <input type="text" th:field="*{surname}" placeholder="surname" class="form-control">
+                                <input type="text" th:field="*{user.name}" placeholder="name" class="form-control">
+                                <input type="text" th:field="*{user.surname}" placeholder="surname" class="form-control">
                             </div>
                         </div>
 
                         <div class="profile-buttons">
                             <div class="profile-cta">
-                                <button type="submit">Save changes</button>
+                                <button type="submit" th:formaction="@{/private/edit}">Save changes</button>
                             </div>
                         </div>
                     </div>
@@ -272,22 +273,17 @@
                         <p class="p-4">Account info:</p>
                         <div class="border p-3">
                             <div class="">
-<!--                                balance should not be changed by user: -->
-                                <p th:text="'Balance: ' + ${userProfile.accountIdaccount.money} + ' EUR'"></p>
-
+                                <p th:text="'Balance: ' + ${wrapper.user.accountIdaccount.money} + ' EUR'"></p>
                             </div>
                             <div class="">
-    <!--                            -->
-                                <p th:text="'Card added: **** **** **** **' + ${#strings.substring(userProfile.accountIdaccount.cardNumber, 14, 16)}"></p>
+                                <p th:text="'Card added: **** **** **** **' + ${#strings.substring(wrapper.user.accountIdaccount.cardNumber, 14, 16)}"></p>
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-3 mb-3">
-<!--                                    edit card number: -->
                                     <label>Card number</label>
-                                    <input type="text" th:field="*{accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
+                                    <input type="text" th:field="*{user.accountIdaccount.cardNumber}" class="form-control" placeholder="card number">
                                 </div>
                                 <div class="col-md-3 mb-3">
-<!--                                    -->
                                     <label>Expiration</label>
                                     <input type="text" class="form-control" placeholder="mm/yy">
                                 </div>
@@ -305,28 +301,31 @@
                             <div class="profile-languages">
 
                                 <p>Languages</p>
-                                <input type="text" th:field="*{language}" class="form-control" placeholder="language">
-<!--                                <ul class="list-group" id="language list">-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="Lithuanian"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input readonly type="text" value="English"><button class="deleteBtn">Delete</button></li>-->
-<!--                                    <li class="list-group-item form-horizontal"><input type="text" placeholder="new language"><button class="deleteBtn">Add</button></li>-->
-<!--                                </ul>-->
+                                <input type="hidden" th:field="*{languageList}">
+                                <tr th:each="lang, itemStat : *{languageList}">
+                                    <input type="hidden" th:field="*{languageList[__${itemStat.index}__].id}">
+                                    <input type="hidden" th:field="*{languageList[__${itemStat.index}__].idUsers}">
+                                    <td>
+                                        <nobr>
+                                            <input th:field="*{languageList[__${itemStat.index}__].language}" />
+                                            <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
+                                        </nobr>
+                                    </td>
+                                </tr>
+                                <input placeholder="language" th:field="*{newLanguage}">
+                                <button th:formaction="@{/private/edit/addLang}" class="btn ml-2 btn-success">Add</button>
 
                             </div>
                             <div class="profile-services">
-
                                 <p>Services</p>
-                                <div class="services-count" th:text="${userProfile.bookings.size()}"></div>
+                                <div class="services-count" th:text="${wrapper.user.bookings.size()}"></div>
                                 <div class="services-text">completed projects</div>
-
                             </div>
                         </div>
                         <div class="vertical-line"></div>
                         <div class="right-section">
-
                             <p>Description</p>
-                            <textarea type="text" th:field="*{description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
-
+                            <textarea type="text" th:field="*{user.description}" class="profile-description border form-control" placeholder="your description" rows="21" cols="80"/>
                         </div>
                     </div>
                 </div>
