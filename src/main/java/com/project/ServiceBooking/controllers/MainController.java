@@ -3,6 +3,11 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
+
+import com.project.ServiceBooking.services.PaymentService;
+
+import com.project.ServiceBooking.repositories.UserRepository;
+
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
@@ -24,10 +29,14 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.*;
 
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+
+import java.security.Principal;
 
 
 
@@ -45,7 +54,7 @@ public class MainController {
 
     @RequestMapping(path = "/profile")
     public String userProfile() {
-        return "User_Profile.html";
+        return "Specialist_Profile_TEST.html";
     }
 
     @Autowired
@@ -90,12 +99,46 @@ public class MainController {
         }
     }
 
+    @Autowired
+    private UserRepository userRepository;
+
+
+
+//
+//    @GetMapping("/clientPrivate")
+//    public String clientPrivateProfile(Model model){
+//        User user = clientProfilePrivateService.getUser();
+//        model.addAttribute("userProfile", user);
+//        return "Client_Profile_Private.html";
+//    }
+//
+//    @GetMapping("/clientPrivate/edit")
+//    public String clientPrivateEdit(Model model){
+//        User user = clientProfilePrivateService.getUser();
+//        model.addAttribute("userProfile", user);
+//        return "Client_Profile_Edit.html";
+//    }
+
+
     @PostMapping("/private/edit")
     public ModelAndView privateEdited(@ModelAttribute User user, ModelMap model){
         userService.saveUser(user);
         model.addAttribute("userProfile", user);
         return new ModelAndView("redirect:/private", model);
     }
+///
+//    @Autowired
+//    UserRepository userRepository;
+//    @GetMapping("/private/editUser")
+//    public ModelAndView showPrivateEdit(){
+//        User user = userRepository.findById(403).get();
+//        ModelAndView mav = new ModelAndView("Client_Profile_Edit.html");
+//        mav.addObject("userProfile", user);
+//        return mav;
+//    }
+
+
+
 
     @RequestMapping(path = "/payment")
     public String payment() {
@@ -119,23 +162,57 @@ public class MainController {
 
     @RequestMapping(path = "contact-us/submit")
     public String submitForm() {return "submit.html";}
+
+
+
     @Autowired
     ServicesCategoryService servicesCategoryService;
-
     @GetMapping("/services")
-    public String listAllServices(Model model) {
-        List<ServicesCategory> servicesCategories = servicesCategoryService.getAllServices();
-        model.addAttribute("servicesCategories", servicesCategories);
+    public String getServiceCategories(Model model) {
+        List<ServicesCategory> serviceCategories = servicesCategoryService.getAllServices();
+
+        Map<String, Set<String>> categoriesMap = new HashMap<>();
+        for (ServicesCategory category : serviceCategories) {
+            String categoryName = category.getCategory();
+            String subCategory = category.getSubCategory();
+
+            if (!categoriesMap.containsKey(categoryName)) {
+                categoriesMap.put(categoryName, new HashSet<>());
+            }
+            categoriesMap.get(categoryName).add(subCategory);
+        }
+
+        model.addAttribute("categoriesMap", categoriesMap);
         return "ServiceCategoryList.html";
     }
 
+
     @Autowired
     ServicesService servicesService;
-    @RequestMapping(path = "/services/description/{id}")
-    public String description (@PathVariable("id") Integer id, Model model) {
-        Service service = servicesService.findById(id);
-        model.addAttribute("service", service);
-        return "ServiceDescription.html";
+    @RequestMapping(path = "/services/services")
+    public String serviceList(@RequestParam("subCategory") String subCategory, Model model) {
+        List<Service> services = servicesService.findBySubCategory(subCategory);
+        model.addAttribute("services", services);
+        return "ServiceList.html";
     }
+
+
+    @Autowired
+    PaymentService paymentService;
+    @RequestMapping(path = "/user/payment/{id}")
+    public String paymentInfo (@PathVariable("id") Integer id, Model model) {
+        Payment payment = paymentService.findById(id);
+        model.addAttribute("payment", payment);
+        return "paymentsInfo.html";
+    }
+
+    @GetMapping("/specialist/{userId}")
+    public String getSpecialistProfile(@PathVariable Integer userId, Model model) {
+        User user = userService.findById(userId);
+        model.addAttribute("user", user);
+        return "Specialist_Profile_TEST.html";
+    }
+
+
 }
 
