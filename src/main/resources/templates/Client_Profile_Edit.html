@@ -303,11 +303,13 @@
                                 <p>Languages</p>
                                 <input type="hidden" th:field="*{languageList}">
                                 <tr th:each="lang, itemStat : *{languageList}">
+                                    <input type="hidden" th:field="*{languageList[__${itemStat.index}__].id}">
+                                    <input type="hidden" th:field="*{languageList[__${itemStat.index}__].idUsers}">
                                     <td>
-                                        <input th:field="*{languageList[__${itemStat.index}__].language}" />
-                                        <input type="hidden" th:field="*{languageList[__${itemStat.index}__].id}">
-                                        <input type="hidden" th:field="*{languageList[__${itemStat.index}__].idUsers}">
-                                        <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
+                                        <nobr>
+                                            <input th:field="*{languageList[__${itemStat.index}__].language}" />
+                                            <a th:href="@{/private/edit/deleteLang(languageId=${lang.id})}" class="btn btn-danger ml-2">Delete</a>
+                                        </nobr>
                                     </td>
                                 </tr>
                                 <input placeholder="language" th:field="*{newLanguage}">

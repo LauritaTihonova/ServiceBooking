@@ -55,7 +55,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -85,7 +85,7 @@ public class MainController {
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+        User user = userService.findById(7);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         PrivateEditForm editForm = new PrivateEditForm();
