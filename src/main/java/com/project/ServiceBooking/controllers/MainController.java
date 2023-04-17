@@ -6,6 +6,8 @@ import com.project.ServiceBooking.data.*;
 import com.project.ServiceBooking.services.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -50,7 +52,7 @@ public class MainController {
 
     @GetMapping("/private")
     public String privateProfile(Model model){
-// THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
+        // THIS IS USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
@@ -80,7 +82,7 @@ public class MainController {
     }
     @GetMapping("/private/edit") // display an edit page
     public String privateEditPage(Model model){
-        // THIS WILL COULD BE USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
+        // THIS IS USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        String currentUserName = authentication.getName();
 //        User user = userService.findByEnterEmail(currentUserName);
