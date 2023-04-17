@@ -3,15 +3,9 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
-
-import com.project.ServiceBooking.services.PaymentService;
+import com.project.ServiceBooking.services.*;
 
 import com.project.ServiceBooking.repositories.UserRepository;
-
-import com.project.ServiceBooking.services.ServicesCategoryService;
-import com.project.ServiceBooking.services.ServicesService;
-
-import com.project.ServiceBooking.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -175,11 +169,12 @@ public class MainController {
 
 
     @Autowired
-    PaymentService paymentService;
-    @RequestMapping(path = "/user/payment/{id}")
-    public String paymentInfo (@PathVariable("id") Integer id, Model model) {
-        Payment payment = paymentService.findById(id);
-        model.addAttribute("payment", payment);
+    AccountServiceTest accountServiceTest;
+    @GetMapping(path = "/user/balance/{id}")
+    public String balanceInfo (@PathVariable ("id") Integer id, Model model ) {
+        Account account = accountServiceTest.getAccountId(id);
+        model.addAttribute("account", account);
+        model.addAttribute("id_account", id);
         return "paymentsInfo.html";
     }
 

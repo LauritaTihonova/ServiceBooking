@@ -16,19 +16,7 @@
 </head>
 <body>
 
-<ul>
-    <li th:each="payment: ${paymentInfo}">
-        <a th:href="@{/user/payment/{id}(id=${id_users})}">
-            <span th:text="${payment.payment}"></span>
-        </a>
-    </li>
-</ul>
-
-<table>
-    <tr th:each="payment: ${payment}">
-        <td>
-            <h2>Your current balance: <span th:text="${payment.sum}"></span> € </h2>
-        </td>
+<h2>Your available balance: <span th:text="${account.money}"></span> € </h2>
 
 </table>
 </body>
