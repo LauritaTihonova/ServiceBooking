@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDateTime;
+
 @Controller
 public class ReviewController {
 
@@ -60,6 +62,7 @@ public class ReviewController {
             review.setRating(rating);
             review.setUsersIdUsers(user);
             review.setIdServices(service);
+            review.setTime_review(LocalDateTime.now());
             reviewService.saveReview(review);
             service.setCountreview(reviewService.findByidServices(id).size());
             service.setAvgrating(reviewService.findAvgRating(id));

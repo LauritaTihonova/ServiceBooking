@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity
@@ -19,6 +21,10 @@ public class Review {
 
     @Column(name = "Comment", length = 45)
     private String comment;
+
+    @Column(name = "time_review", length = 45)
+    private LocalDateTime time_review;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_services")
