@@ -24,114 +24,16 @@
         transition: transform 0.3s ease-in-out;
         background-color: white;
       }
-
-      .skills:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-      }
-
       .profile-container {
         margin: 0px -37%;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
-
-      .profile-image {
-        text-align: center;
-        margin-bottom: 10px;
-      }
-
-      .profile-image img {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .profile-name {
-        font-size: 36px;
-        margin-bottom: 10px;
-        color: #333;
-        font-weight: bold;
-        text-align: center;
-      }
-
-      .profile-description {
-        font-size: 20px;
-        margin-bottom: 20px;
-        color: #666;
-        text-align: left;
-      }
-
-      .profile-languages ul,
-      .profile-services ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .profile-languages li,
-      .profile-services li {
-        margin-right: 10px;
-        font-size: 16px;
-        color: #333;
-      }
-
-      .profile-languages li i,
-      .profile-services li i {
-        margin-right: 5px;
-        color: #955aed;
-      }
-
       .profile-ratings,
       .profile-services,
       .profile-cta {
         margin-top: 20px;
         text-align: center;
       }
-
-      p {
-        font-size: 20px;
-        color: #333;
-        font-weight: bold;
-        padding: 15px;
-        text-align: center;
-      }
-
-      .profile-ratings .rating-stars,
-      .profile-services .services-count {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .profile-ratings .star,
-      .profile-services .services-text {
-        display: inline-block;
-        width: 25px;
-        height: 25px;
-        background-image: url(star.png);
-        background-size: cover;
-        margin-right: 5px;
-      }
-
-      .profile-services .services-count {
-        font-size: 24px;
-        margin-bottom: 5px;
-        color: #955aed;
-      }
-
-      .profile-services .services-text {
-        font-size: 18px;
-        color: #666;
-        margin-bottom: 10px;
-        width: auto;
-      }
-
       .profile-cta button {
         padding: 10px 20px;
         font-size: 20px;
@@ -154,24 +56,15 @@
         padding: 25px;
         align-items: flex-start;
       }
-
-      .profile img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-      }
-
       .profile .info {
         display: flex;
         flex-direction: column;
         justify-content: center;
       }
-
       .profile .info h2 {
         margin: 0;
         font-size: 1.2rem;
       }
-
       .profile .info .ratings {
         margin: 0;
         font-size: 1rem;
@@ -189,34 +82,138 @@
         align-items: center;
         gap: 40px;
       }
-
-      .left-section{
-        width: 30%;
-      }
-
-      .right-section{
-        width: 70%;
-      }
-      .vertical-line {
-        border-left: 1px solid #955aed;
-        height: 760px;
-      }
              a {
         color: white;
         text-decoration:none;
         }
+        /* Popup style */
+      .blur {
+        filter: blur(3px);
+        -webkit-filter: blur(3px);
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+      .popup-form input,
+		.popup-form textarea {
+			border: none;
+			border-bottom: 1px solid #ccc;
+			margin-bottom: 10px;
+			width: 100%;
+			padding: 10px;
+			font-size: 1rem;
+		}
+      .popup-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 40%;
+      }
+      .popup-close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .popup-close:hover,
+      .popup-close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .close-btn {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			cursor: pointer;
+		}
 
+		.close-btn:hover {
+			transform: rotate(90deg);
+		}
 
-        .main-text{
-        text-align: center;
-        color: #955aed;
-        padding-top: 80px;
-        }
+		.popup-form button:hover {
+			background-color: #803eeb;
+		}
+		.close-btn {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			cursor: pointer;
+		}
+
+		.close-btn:hover {
+			transform: rotate(90deg);
+		}
+
+		.popup-form button:hover {
+			background-color: #803eeb;
+		}
+		.close-btn {
+			position: absolute;
+			top: 5px;
+			right: 10px;
+			cursor: pointer;
+		}
+
+		.close-btn:hover {
+			transform: rotate(90deg);
+		}
+
+		.popup-form button:hover {
+			background-color: #803eeb;
+		}
+/* Calendar style */
+.calendar-container {
+  margin-bottom: 20px;
+}
+label[for="calendar"] {
+  display: block;
+  margin-bottom: 5px;
+}
+#calendar {
+  padding: 10px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+  width: 100%;
+}
+/* Button style */
+#bookButton, #cancelButton {
+  background-color: #955aed; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+#bookButton:hover, #cancelButton:hover {
+  background-color: #955aed;
+}
+.submit-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
     </style>
 </head>
 <body>
-<h1 class="main-text">Specialist Profile</h1>
 <div class="container">
   <div class="row">
     <div class="col-md-6 offset-md-3" style="padding: 100px 0px;">
@@ -224,30 +221,68 @@
         <div class="profile">
           <div class="profile-buttons">
             <div class="profile-cta">
-              <button type="button" id="contactButton">Contact</button>
+              <button onclick="openPopup()">Contact</button>
             </div>
           </div>
-
-          <div class="modal" id="bookingModal" style="display: none;">
-            <div class="modal-content">
-              <span class="close">&times;</span>
-              <form id="bookingForm">
-                <!-- Add form inputs here, such as name, email, phone number, etc. -->
-                <label for="bookingDate">Booking Date:</label>
-                <input type="text" id="bookingDate" name="bookingDate" required>
-                <div id="calendar"></div>
-                <input type="submit" value="Submit">
-              </form>
-            </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Popup -->
+<div class="popup" id="myPopup">
+  <div class="popup-content">
+    <span class="popup-close" onclick="closePopup()">&times;</span>
+    <h2>Contact Us</h2>
+    <form id="bookingForm" method="post">
+      <div class="calendar-container">
+        <label for="calendar">Select a date:</label>
+        <input type="text" id="calendar" name="calendar" required>
+      </div>
+      <div class="submit-container">
+        <button type="submit" id="bookButton">Book</button>
+        <button type="button" id="cancelButton" onclick="closePopup()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script>
+    function openPopup() {
+      document.querySelector(".popup").style.display = "block";
+      document.querySelector(".container").classList.add("blur");
+    }
 
-</script>
+    function closePopup() {
+      document.querySelector(".popup").style.display = "none";
+      document.querySelector(".container").classList.remove("blur");
+    }
 
+    document.querySelector(".popup").addEventListener("click", function (event) {
+      if (event.target === document.querySelector(".popup")) {
+        closePopup();
+      }
+    });
+
+    flatpickr("#calendar", {
+      enableTime: false,
+      dateFormat: "Y-m-d",
+      minDate: "today",
+      maxDate: new Date().fp_incr(30), // Allow bookings up to 30 days in advance
+      disable: [
+        // Disable weekends
+        function (date) {
+          return date.getDay() === 0 || date.getDay() === 6;
+        }
+      ]
+    });
+
+    document.getElementById("bookingForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      // Code to submit the booking form goes here
+    });
+  </script>
 </body>
+
 </html>
