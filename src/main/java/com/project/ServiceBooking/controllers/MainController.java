@@ -1,12 +1,13 @@
 package com.project.ServiceBooking.controllers;
 
-import com.project.ServiceBooking.data.Role;
-import com.project.ServiceBooking.data.Service;
-import com.project.ServiceBooking.data.ServicesCategory;
-import com.project.ServiceBooking.data.User;
+import com.project.ServiceBooking.data.*;
 
+
+
+import com.project.ServiceBooking.services.PaymentService;
 
 import com.project.ServiceBooking.repositories.UserRepository;
+
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
@@ -172,12 +173,23 @@ public class MainController {
         return "ServiceList.html";
     }
 
+
+    @Autowired
+    PaymentService paymentService;
+    @RequestMapping(path = "/user/payment/{id}")
+    public String paymentInfo (@PathVariable("id") Integer id, Model model) {
+        Payment payment = paymentService.findById(id);
+        model.addAttribute("payment", payment);
+        return "paymentsInfo.html";
+    }
+
     @GetMapping("/specialist/{userId}")
     public String getSpecialistProfile(@PathVariable Integer userId, Model model) {
         User user = userService.findById(userId);
         model.addAttribute("user", user);
         return "Specialist_Profile_TEST.html";
     }
+
 
 }
 
