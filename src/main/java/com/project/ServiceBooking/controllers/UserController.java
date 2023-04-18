@@ -154,7 +154,7 @@ public class UserController {
     }
     @GetMapping("/success")
     public String getSuccessPage(){
-        return "success";
+        return "HomePage.html";
     }
 
     @GetMapping("/deleteUser/{id}")

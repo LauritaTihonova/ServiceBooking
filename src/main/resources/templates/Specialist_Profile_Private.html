@@ -1,17 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
-    <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
-    <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <link rel="icon" type="image/x-icon" href="https://i.ibb.co/ySYDwL1/design-2-5.png">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="/webjars/bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css">
+  <script src="/webjars/bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <style>
       body {
         background-color: #f8f9fa;
+      }
+      footer{
+        padding: 30px;
+        background-color:#955aed;
+        margin: 200px 0px 0px 0px;
       }
       .profile-container,
       .skills {
@@ -220,7 +226,7 @@
     </style>
   <nav>
     <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
-    <button class="header"><a href="/registration">Register</a></button>
+    <button class="header"><a>Log out</a></button>
     <button class="header"><a href="/private">My profile</a></button>
     <button class="header"><a href="/contact-us">Contact Us</a></button>
     <button class="header"><a href="/about-us">About Us</a></button>
@@ -325,5 +331,21 @@
     </div>
   </div>
 </div>
+<footer>
+  <div class="row">
+    <div class="column"> <h5 style="font-weight: bold"> <a href="/contact-us">CONTACT US</a></h5>
+      <address>
+        Our office location: 301 West St, 2nd Floor, Boston<br>
+        Phone number: 617-509-6995<br>
+        Email: info@servicebooking.com
+      </address>
+      <img src="https://i.ibb.co/dJtdq3F/social-icons-white.png" alt="social-icons" style="width:30%"></div>
+    <div class="column"><h5 style="font-weight:bold; text-align:center"><a href="/services">OUR SERVICES</a></h5></div>
+    <div class="column"><h5 style="font-weight:bold; text-align:right"><a href="/about-us">ABOUT US</a></h5></div>
+  </div>
+  <h6 style="color:white; text-align:center; font-weight: normal;">© ServiceBooking 2023. All Rights Reserved</h6>
+</footer>
+
 </body>
+
 </html>

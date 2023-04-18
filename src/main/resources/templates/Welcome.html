@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <title>Welcome to Service Booking!</title>
     <meta charset="UTF-8">
@@ -68,20 +68,16 @@
       }
 
     </style>
-
+    <nav>
+        <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
+        <button class="header"><a href="/auth/login">Login/Register</a></button>
+        <button class="header"><a href="/contact-us">Contact Us</a></button>
+        <button class="header"><a href="/about-us">About Us</a></button>
+        <button class="header"><a href="/services">Our Services</a></button>
+        <button class="header"><a href="/home">Home</a></button>
+    </nav>
 </head>
 <body>
-<nav>
-    <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
-    <form sec:authorize="isAuthenticated()" action="/auth/logout" method="POST">
-        <button class="header" type="submit">Log out</button>
-    </form>
-    <button class="header"><a href="/private">My profile</a></button>
-    <button class="header"><a href="/contact-us">Contact Us</a></button>
-    <button class="header"><a href="/about-us">About Us</a></button>
-    <button class="header"><a href="/services">Our Services</a></button>
-    <button class="header"><a href="/home">Home</a></button>
-</nav>
 
         <p class="welcome">
             Welcome to the Service Booking! <br> You can register as a specialist and offer your services!
@@ -134,6 +130,8 @@ function showDivs(n) {
     </div>
     <h6 style="color:white; text-align:center; font-weight: normal;">© ServiceBooking 2023. All Rights Reserved</h6>
 </footer>
+
+
 
 </body>
 </html>
