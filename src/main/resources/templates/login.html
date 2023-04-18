@@ -75,11 +75,30 @@
       display: table;
       clear: both;
       }
+      .containerParent{
+        border: 1px solid #955aed;
+        border-radius: 5px;
+        padding: 50px;
+        margin: 20px 400px 20px 400px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        background-color: white;
+        text-align: center;
+      }
+      .containerChild{
+        display: inline-block;
+        border: 1px solid #955aed;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        background-color: #955aed;
+        color: white;
+        }
   </style>
   <nav>
     <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
-    <button class="header"><a href="/registration">Register</a></button>
-    <button class="header"><a href="/private">My profile</a></button>
+    <button class="header"><a href="/auth/login">Login/Register</a></button>
     <button class="header"><a href="/contact-us">Contact Us</a></button>
     <button class="header"><a href="/about-us">About Us</a></button>
     <button class="header"><a href="/services">Our Services</a></button>
@@ -89,9 +108,9 @@
 <body>
 
 <div class="container mt-5">
-  <h1 class="text-center mb-4">Login</h1>
   <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
+      <h1 class="text-center mb-4">Login</h1>
       <p th:if="${message}" th:text="${message}"></p>
       <form  method="post" action="/auth/login">
         <div class="form-group">
@@ -105,6 +124,18 @@
         </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #8A2BE2;">Sign in</button>
       </form>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <h1 class="text-center mb-4">Register</h1>
+      <div>
+        <div class = "containerChild">
+          <button><a href="/auth/registration_client"> I'm a client, looking for specialists </a></button>
+        </div>
+        &nbsp;
+        <div class = "containerChild">
+          <button><a href="/auth/registration_specialist"> I'm a specialist, I want to offer my services </a></button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

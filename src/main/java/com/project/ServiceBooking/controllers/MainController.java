@@ -44,6 +44,11 @@ import java.security.Principal;
 @Controller
 public class MainController {
 
+    @RequestMapping(path = "/")
+    public String welcomePage(){
+        return "Welcome.html";
+    }
+
     @RequestMapping(path = "/home")
     public String homepage() {
         return "HomePage.html";
@@ -70,11 +75,11 @@ public class MainController {
     @GetMapping("/private")
     public String privateProfile(Model model){
         // THIS IS USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentUserName = authentication.getName();
-//        User user = userService.findByEnterEmail(currentUserName);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+//        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // I'm fetching languages separately from user
 
         PrivateEditForm editForm = new PrivateEditForm();
@@ -100,11 +105,11 @@ public class MainController {
     @GetMapping("/private/edit") // display an edit page
     public String privateEditPage(Model model){
         // THIS IS USED FOR FETCHING PERSONAL PAGE DEPENDING ON WHO IS ACTUALLY LOGGED IN:
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String currentUserName = authentication.getName();
-//        User user = userService.findByEnterEmail(currentUserName);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentUserName = authentication.getName();
+        User user = userService.findByEnterEmail(currentUserName);
 
-        User user = userService.findById(8);
+//        User user = userService.findById(8);
         ArrayList<Language> languages = (ArrayList<Language>)languageService.findByUser(user.getId()); // because this is fetched separately then it should probably be saved separately as well
 
         PrivateEditForm editForm = new PrivateEditForm();
