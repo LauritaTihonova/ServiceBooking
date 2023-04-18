@@ -3,22 +3,24 @@ package com.project.ServiceBooking.controllers;
 import com.project.ServiceBooking.data.*;
 
 
+import com.project.ServiceBooking.repositories.AccountRepository;
+import com.project.ServiceBooking.services.*;
 
-import com.project.ServiceBooking.services.PaymentService;
 import com.project.ServiceBooking.services.LanguageService;
 import com.project.ServiceBooking.services.SkillService;
 import com.project.ServiceBooking.services.EducationService;
+
 
 import com.project.ServiceBooking.services.ServicesCategoryService;
 import com.project.ServiceBooking.services.ServicesService;
 
 import com.project.ServiceBooking.services.UserService;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -34,10 +37,7 @@ import java.util.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-
-import java.security.Principal;
-
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -268,16 +268,6 @@ public class MainController {
         List<Service> services = servicesService.findBySubCategory(subCategory);
         model.addAttribute("services", services);
         return "ServiceList.html";
-    }
-
-
-    @Autowired
-    PaymentService paymentService;
-    @RequestMapping(path = "/user/payment/{id}")
-    public String paymentInfo (@PathVariable("id") Integer id, Model model) {
-        Payment payment = paymentService.findById(id);
-        model.addAttribute("payment", payment);
-        return "paymentsInfo.html";
     }
 
     @GetMapping("/specialist/{userId}")
