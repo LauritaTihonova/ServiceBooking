@@ -11,9 +11,9 @@ import java.util.Calendar;
 
 @Service
 public class VerificationTokenService {
+
     private final VerificationTokenRepository verificationTokenRepository;
 
-    @Autowired
     public VerificationTokenService(VerificationTokenRepository verificationTokenRepository) {
         this.verificationTokenRepository = verificationTokenRepository;
     }

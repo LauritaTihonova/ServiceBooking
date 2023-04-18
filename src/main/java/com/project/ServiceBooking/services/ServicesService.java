@@ -10,7 +10,11 @@ import java.util.List;
 public class ServicesService {
 
     @Autowired
-    ServiceRepository serviceRepository;
+    private final ServiceRepository serviceRepository;
+
+    public ServicesService(ServiceRepository serviceRepository) {
+        this.serviceRepository = serviceRepository;
+    }
 
     public com.project.ServiceBooking.data.Service findById(Integer id) {
     return serviceRepository.findById(id).orElse(null);

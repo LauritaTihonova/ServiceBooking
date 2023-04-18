@@ -66,11 +66,11 @@ public class UserControllerTest {
 
     @MockBean
     private UserRepository userRepository;
-    @MockBean
-    private AccountRepository accountRepository;
 
-    @MockBean
-    private SellerRepository sellerRepository;
+//    @MockBean
+//    private AccountRepository accountRepository;
+//    @MockBean
+//    private SellerRepository sellerRepository;
 
     @MockBean
     private VerificationTokenRepository verificationTokenRepository;
@@ -137,7 +137,6 @@ public class UserControllerTest {
 
         when(userRepository.save(getTestUser())).thenReturn(getTestUser());
         assertEquals(getTestUser(), userRepository.save(getTestUser()));
-
 
         when(verificationTokenRepository.save(verificationToken)).thenReturn(verificationToken);
         assertEquals(verificationToken, verificationTokenRepository.save(verificationToken));
