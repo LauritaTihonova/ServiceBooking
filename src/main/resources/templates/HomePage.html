@@ -80,7 +80,8 @@
     <button class="header"><a href="/contact-us">Contact Us</a></button>
     <button class="header"><a href="/about-us">About Us</a></button>
     <button class="header"><a href="/services">Our Services</a></button>
-    <button class="header"><a href="/home">Home</a></button>
+    <button class="header" sec:authorize="isAuthenticated()"><a href="/home">Home</a></button>
+    <button class="header" sec:authorize="!isAuthenticated()"><a href="/">Home</a></button>
 </nav>
 
         <p class="welcome">

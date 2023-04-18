@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -51,11 +51,13 @@
     </style>
     <nav>
         <a href="/home">  <img src="https://i.ibb.co/RD6sbKs/icon-service.png" alt="logo"> </a>
-        <button class="header"><a href="/auth/login">Login/Register</a></button>
+        <button class="header" sec:authorize="isAuthenticated()"><a>Log out</a></button>
+        <button class="header" sec:authorize="!isAuthenticated()"><a href="/auth/login">Login/Register</a></button>
         <button class="header"><a href="/contact-us">Contact Us</a></button>
         <button class="header"><a href="/about-us">About Us</a></button>
         <button class="header"><a href="/services">Our Services</a></button>
-        <button class="header"><a href="/home">Home</a></button>
+        <button class="header" sec:authorize="isAuthenticated()"><a href="/home">Home</a></button>
+        <button class="header" sec:authorize="!isAuthenticated()"><a href="/">Home</a></button>
     </nav>
 </head>
 <body>
