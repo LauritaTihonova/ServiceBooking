@@ -30,6 +30,7 @@ public class WithdrawController {
         account.setMoney(newBalance);
         accountRepository.save(account);
 
+
         // Show success message
         model.addAttribute("success", "Withdrawal successful! New balance: " + newBalance);
         return "withdraw.html";
